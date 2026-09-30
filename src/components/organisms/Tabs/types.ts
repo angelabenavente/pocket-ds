@@ -22,6 +22,10 @@ interface UncontrolledTabsProps {
 
 type TabsStateProps = ControlledTabsProps | UncontrolledTabsProps;
 
+export const tabsAlignments = ["left", "center", "right"] as const;
+
+export type TabsAlign = (typeof tabsAlignments)[number];
+
 interface LabelledBy {
   "aria-label"?: never;
   "aria-labelledby": string;
@@ -37,6 +41,7 @@ export type TabsProps = Omit<
   "aria-label" | "className" | "defaultValue" | "onChange"
 > &
   TabsStateProps & {
+    align?: TabsAlign;
     "aria-label": string;
     children: ReactNode;
     className?: string;

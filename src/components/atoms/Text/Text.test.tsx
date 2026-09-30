@@ -15,7 +15,7 @@ const defaultElements: Record<TextVariant, TextElement> = {
 describe("Text", () => {
   describe("rendering", () => {
     it("renders body-m as a paragraph by default", () => {
-      render(<Text className="custom-class" label="Regular text" />);
+      render(<Text className="custom-class">Regular text</Text>);
 
       const text = screen.getByText("Regular text");
 
@@ -28,7 +28,7 @@ describe("Text", () => {
     it.each(Object.entries(defaultElements) as Array<[TextVariant, TextElement]>)(
       "renders %s as %s",
       (variant, element) => {
-        render(<Text variant={variant} label={variant} />);
+        render(<Text variant={variant}>{variant}</Text>);
 
         const text = screen.getByText(variant);
 
@@ -40,13 +40,17 @@ describe("Text", () => {
 
   describe("element", () => {
     it.each(["h4", "h5", "h6"] as const)("can render as %s", (element) => {
-      render(<Text as={element} label="Heading" />);
+      render(<Text as={element}>Heading</Text>);
 
       expect(screen.getByText("Heading").tagName).toBe(element.toUpperCase());
     });
 
     it("uses the requested element instead of the variant default", () => {
-      render(<Text as="span" variant="heading-m" label="Section title" />);
+      render(
+        <Text as="span" variant="heading-m">
+          Section title
+        </Text>,
+      );
 
       const text = screen.getByText("Section title");
 

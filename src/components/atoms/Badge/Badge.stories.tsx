@@ -3,25 +3,37 @@ import { Badge } from "./Badge";
 import type { BadgeVariant } from "./types";
 
 const variants: BadgeVariant[] = ["neutral", "positive", "negative"];
+const example = "Badge";
 
 const meta = {
   title: "Components/Badge",
   component: Badge,
   tags: ["autodocs"],
   args: {
-    label: "Badge",
+    label: example,
     variant: "neutral",
   },
   argTypes: {
     label: {
-      control: false,
+      control: "text",
+      table: {
+        defaultValue: { summary: example },
+        type: { summary: "string" },
+      },
     },
     variant: {
       control: "select",
       options: variants,
+      table: {
+        defaultValue: { summary: "neutral" },
+        type: { summary: "neutral | positive | negative" },
+      },
     },
   },
   parameters: {
+    controls: {
+      include: ["label", "variant"],
+    },
     docs: {
       description: {
         component:

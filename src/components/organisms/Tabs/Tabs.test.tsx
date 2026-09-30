@@ -4,6 +4,7 @@ import { describe, expect, it, vi } from "vitest";
 import type { BadgeVariant } from "../../atoms/Badge";
 import type { TabVariant } from "../../molecules/Tab";
 import { Tabs } from "./Tabs";
+import type { TabsAlign } from "./types";
 
 function UncontrolledTabs(props: {
   defaultValue?: number;
@@ -137,6 +138,18 @@ describe("Tabs", () => {
 
       expect(screen.getByTestId("tabs-root")).toHaveAttribute("data-variant", variant);
       expect(screen.getByRole("tab")).toHaveAttribute("data-variant", variant);
+    });
+  });
+
+  describe("alignment", () => {
+    it.each<TabsAlign>(["left", "center", "right"])("aligns tabs to the %s", (align) => {
+      render(
+        <Tabs aria-label="Aligned sections" align={align} data-testid="tabs-root">
+          <Tabs.Tab label="Overview">Overview content</Tabs.Tab>
+        </Tabs>,
+      );
+
+      expect(screen.getByTestId("tabs-root")).toHaveAttribute("data-align", align);
     });
   });
 

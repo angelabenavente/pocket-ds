@@ -1,6 +1,16 @@
 import type { Decorator, Meta } from "@storybook/react-vite";
+import type { TabVariant } from "../../molecules/Tab";
 import { Tabs } from "./Tabs";
 import styles from "./Tabs.stories.module.scss";
+import { type TabsAlign, tabsAlignments } from "./types";
+
+const variants: TabVariant[] = ["underline", "pill"];
+
+type TabsStoryArgs = {
+  align: TabsAlign;
+  "aria-label": string;
+  variant: TabVariant;
+};
 
 const withStoryWidth: Decorator[] = [
   (Story) => (
@@ -14,9 +24,32 @@ const meta = {
   title: "Components/Tabs",
   component: Tabs,
   tags: ["autodocs"],
+  args: {
+    align: "left",
+    "aria-label": "Account sections",
+    variant: "underline",
+  },
+  argTypes: {
+    align: {
+      control: "inline-radio",
+      options: [...tabsAlignments],
+      table: {
+        defaultValue: { summary: "left" },
+        type: { summary: "left | center | right" },
+      },
+    },
+    variant: {
+      control: "select",
+      options: variants,
+      table: {
+        defaultValue: { summary: "underline" },
+        type: { summary: "underline | pill" },
+      },
+    },
+  },
   parameters: {
     controls: {
-      disable: true,
+      include: ["align", "variant"],
     },
     docs: {
       description: {
@@ -30,9 +63,12 @@ const meta = {
 
 export default meta;
 
-export const Underline = {
-  render: () => (
-    <Tabs aria-label="Account sections" variant="underline">
+function AccountTabs(args: TabsStoryArgs) {
+  const { align, variant } = args;
+  const label = args["aria-label"];
+
+  return (
+    <Tabs align={align} aria-label={label} variant={variant}>
       <Tabs.Tab label="Overview">Overview content</Tabs.Tab>
       <Tabs.Tab label="Activity">Activity content</Tabs.Tab>
       <Tabs.Tab label="Settings">Settings content</Tabs.Tab>
@@ -40,25 +76,40 @@ export const Underline = {
         Disabled content
       </Tabs.Tab>
     </Tabs>
-  ),
+  );
+}
+
+export const Underline = {
+  render: (args: TabsStoryArgs) => <AccountTabs {...args} />,
 };
 
 export const Pill = {
-  render: () => (
-    <Tabs aria-label="Account sections" variant="pill">
-      <Tabs.Tab label="Overview">Overview content</Tabs.Tab>
-      <Tabs.Tab label="Activity">Activity content</Tabs.Tab>
-      <Tabs.Tab label="Settings">Settings content</Tabs.Tab>
-      <Tabs.Tab label="Disabled" disabled>
-        Disabled content
-      </Tabs.Tab>
-    </Tabs>
-  ),
+  args: {
+    variant: "pill",
+  },
+  render: (args: TabsStoryArgs) => <AccountTabs {...args} />,
+};
+
+export const Center = {
+  args: {
+    align: "center",
+  },
+  render: (args: TabsStoryArgs) => <AccountTabs {...args} />,
+};
+
+export const Right = {
+  args: {
+    align: "right",
+  },
+  render: (args: TabsStoryArgs) => <AccountTabs {...args} />,
 };
 
 export const WithBadges = {
-  render: () => (
-    <Tabs aria-label="Inbox sections" variant="underline">
+  args: {
+    "aria-label": "Inbox sections",
+  },
+  render: (args: TabsStoryArgs) => (
+    <Tabs align={args.align} aria-label={args["aria-label"]} variant={args.variant}>
       <Tabs.Tab
         label="Overview"
         badge={{

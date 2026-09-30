@@ -4,4 +4,4 @@ export type {
   TabBadge as TabsTabBadge,
   TabVariant as TabsVariant,
 } from "./molecules/Tab";
-export { Tabs, type TabsProps, type TabsTabProps } from "./organisms/Tabs";
+export { Tabs, type TabsAlign, type TabsProps, type TabsTabProps } from "./organisms/Tabs";

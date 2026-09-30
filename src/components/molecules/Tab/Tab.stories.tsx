@@ -1,4 +1,15 @@
+import {
+  Controls,
+  Description,
+  DocsContext,
+  Primary,
+  Stories,
+  Subtitle,
+  Title,
+} from "@storybook/addon-docs/blocks";
 import type { Decorator, Meta, StoryObj } from "@storybook/react-vite";
+import { useContext } from "react";
+import { useStoryCopy } from "../../../storybook/locales";
 import { TabTrigger } from "./Tab";
 import styles from "./Tab.stories.module.scss";
 import type { TabVariant } from "./types";
@@ -10,6 +21,37 @@ const withTabList: Decorator = (Story) => (
     <Story />
   </div>
 );
+
+function TabDocsPage() {
+  const copy = useStoryCopy();
+  const context = useContext(DocsContext);
+  const stories = context.componentStories();
+
+  for (const story of stories) {
+    const keyArgType = story.argTypes.key;
+
+    if (keyArgType) {
+      keyArgType.table = {
+        ...keyArgType.table,
+        defaultValue: { summary: copy.components.tabKeyDefault },
+      };
+    }
+  }
+
+  const isSingleStory = stories.length === 1;
+
+  return (
+    <>
+      <Title />
+      <Subtitle />
+      <Description of="meta" />
+      {isSingleStory ? <Description of="story" /> : null}
+      <Primary />
+      <Controls />
+      {isSingleStory ? null : <Stories />}
+    </>
+  );
+}
 
 const meta = {
   title: "Components/Tabs/Tab",
@@ -28,16 +70,26 @@ const meta = {
     isSelected: {
       control: "boolean",
     },
+    key: {
+      table: {
+        defaultValue: { summary: "Filled with the index" },
+      },
+    },
     onSelect: {
       control: false,
     },
     variant: {
-      control: "inline-radio",
+      control: "select",
       options: variants,
+      table: {
+        defaultValue: { summary: "underline" },
+        type: { summary: "underline | pill" },
+      },
     },
   },
   parameters: {
     docs: {
+      page: TabDocsPage,
       description: {
         component:
           "The visual tab trigger. Use Tabs when you need selection, keyboard navigation, and panels. Tab on its own only renders the trigger.",

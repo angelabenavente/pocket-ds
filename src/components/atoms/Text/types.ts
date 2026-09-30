@@ -18,7 +18,6 @@ type TextOwnProps = {
   children?: ReactNode;
   className?: string;
   key?: string;
-  label?: string;
   variant?: TextVariant;
 };
 

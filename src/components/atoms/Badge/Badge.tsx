@@ -14,8 +14,9 @@ export function Badge(props: BadgeProps) {
       as="span"
       className={cn(styles.badge, className)}
       data-variant={variant}
-      label={label}
       variant="body-s"
-    />
+    >
+      {label}
+    </Text>
   );
 }

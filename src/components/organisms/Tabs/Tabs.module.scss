@@ -11,6 +11,14 @@
     scrollbar-width: thin;
   }
 
+  &[data-align="center"] &__list {
+    justify-content: safe center;
+  }
+
+  &[data-align="right"] &__list {
+    justify-content: safe flex-end;
+  }
+
   &__panel {
     padding-top: var(--space-s);
   }

@@ -24,6 +24,7 @@ const TabsContext = createContext<TabsContextValue | null>(null);
 
 function TabsRoot(props: Omit<TabsProps, "aria-label" | "aria-labelledby">) {
   const {
+    align = "left",
     children,
     className,
     defaultValue,
@@ -60,7 +61,12 @@ function TabsRoot(props: Omit<TabsProps, "aria-label" | "aria-labelledby">) {
 
   return (
     <TabsContext.Provider value={contextValue}>
-      <div {...rootProps} className={cn(styles.tabs, className)} data-variant={variant}>
+      <div
+        {...rootProps}
+        className={cn(styles.tabs, className)}
+        data-align={align}
+        data-variant={variant}
+      >
         {children}
       </div>
     </TabsContext.Provider>

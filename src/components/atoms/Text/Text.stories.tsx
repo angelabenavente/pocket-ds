@@ -3,32 +3,44 @@ import { Text } from "./Text";
 import { type TextElement, textVariants } from "./types";
 
 const elements: TextElement[] = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "span"];
+const example = "The quick brown fox jumps over the lazy dog.";
 
 const meta = {
   title: "Components/Text",
   component: Text,
   tags: ["autodocs"],
   args: {
-    label: "The quick brown fox jumps over the lazy dog.",
+    children: example,
     variant: "body-m",
   },
   argTypes: {
     as: {
       control: "select",
       options: elements,
+      table: {
+        defaultValue: { summary: "p" },
+        type: { summary: "h1 | h2 | h3 | h4 | h5 | h6 | p | span" },
+      },
     },
     children: {
-      control: false,
-    },
-    label: {
-      control: false,
+      control: "text",
+      table: {
+        type: { summary: "ReactNode" },
+      },
     },
     variant: {
       control: "select",
-      options: textVariants,
+      options: [...textVariants],
+      table: {
+        defaultValue: { summary: "body-m" },
+        type: { summary: textVariants.join(" | ") },
+      },
     },
   },
   parameters: {
+    controls: {
+      include: ["as", "children", "variant"],
+    },
     docs: {
       description: {
         component:
