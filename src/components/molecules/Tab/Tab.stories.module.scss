@@ -1,0 +1,35 @@
+@use "../../../styles/mixins";
+
+.tabStory {
+  display: grid;
+  gap: var(--space-l);
+
+  &__row {
+    align-items: end;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-m);
+  }
+
+  &__state {
+    display: grid;
+    gap: var(--space-3xs);
+    justify-items: start;
+  }
+
+  &__label {
+    @include mixins.body-s;
+
+    color: var(--color-text-muted);
+  }
+
+  &__forcedHover {
+    &[data-variant="underline"]::after {
+      background-color: var(--color-border-muted);
+    }
+
+    &[data-variant="pill"] {
+      background-color: var(--color-surface-muted);
+    }
+  }
+}
