@@ -22,7 +22,7 @@ interface UncontrolledTabsRootProps {
 
 type TabsRootStateProps = ControlledTabsRootProps | UncontrolledTabsRootProps;
 
-export type TabsRootProps = Omit<HTMLAttributes<HTMLDivElement>, "onChange"> &
+export type TabsRootProps = Omit<HTMLAttributes<HTMLDivElement>, "defaultValue" | "onChange"> &
   TabsRootStateProps & {
     variant?: TabVariant;
   };
