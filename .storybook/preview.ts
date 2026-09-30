@@ -6,6 +6,9 @@ import "../src/styles/globals.scss";
 
 const preview: Preview = {
   parameters: {
+    a11y: {
+      test: "error",
+    },
     docs: {
       toc: true,
     },
