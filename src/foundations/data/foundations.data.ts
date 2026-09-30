@@ -40,6 +40,20 @@ export const semanticColors: ColorDoc[] = [
     description: "Selected tab and other emphasized surfaces.",
   },
   {
+    title: "Surface positive",
+    token: "--color-surface-positive",
+    value: colorValue("color-badge-positive"),
+    source: "$color-badge-positive",
+    description: "Positive badge background.",
+  },
+  {
+    title: "Surface negative",
+    token: "--color-surface-negative",
+    value: colorValue("color-badge-negative"),
+    source: "$color-badge-negative",
+    description: "Negative badge background.",
+  },
+  {
     title: "Border default",
     token: "--color-border-default",
     value: colorValue("color-border-subtle"),
@@ -85,18 +99,6 @@ export const reservedPrimitiveColors: ColorDoc[] = [
     token: "$color-neutral-700",
     value: colorValue("color-neutral-700"),
     description: "Selected pill active state.",
-  },
-  {
-    title: "Badge positive",
-    token: "$color-badge-positive",
-    value: colorValue("color-badge-positive"),
-    description: "Positive badge background.",
-  },
-  {
-    title: "Badge negative",
-    token: "$color-badge-negative",
-    value: colorValue("color-badge-negative"),
-    description: "Negative badge background.",
   },
 ];
 

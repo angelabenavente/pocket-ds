@@ -5,6 +5,8 @@
   --color-text-default: #{p.$color-neutral-900};
   --color-text-on-emphasis: #{p.$color-foundation-white};
   --color-surface-emphasis: #{p.$color-neutral-900};
+  --color-surface-positive: #{p.$color-badge-positive};
+  --color-surface-negative: #{p.$color-badge-negative};
   --color-border-default: #{p.$color-border-subtle};
   --color-border-muted: #{p.$color-border-muted};
   --color-surface-muted: #{p.$color-surface-muted};

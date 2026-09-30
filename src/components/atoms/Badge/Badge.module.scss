@@ -1,0 +1,28 @@
+@use "../../../styles/mixins";
+
+.badge {
+  @include mixins.body-s;
+
+  align-items: center;
+  border-radius: var(--space-xs);
+  color: var(--color-text-default);
+  display: inline-flex;
+  font-weight: var(--font-weight-emphasis);
+  justify-content: center;
+  min-height: var(--space-m);
+  min-width: var(--space-m);
+  padding: 0 var(--space-2xs);
+  white-space: nowrap;
+
+  &[data-variant="neutral"] {
+    background-color: var(--color-surface-muted);
+  }
+
+  &[data-variant="positive"] {
+    background-color: var(--color-surface-positive);
+  }
+
+  &[data-variant="negative"] {
+    background-color: var(--color-surface-negative);
+  }
+}

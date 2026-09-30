@@ -1,3 +1,4 @@
+export { Badge, type BadgeProps, type BadgeVariant } from "./atoms/Badge";
 export type { TabVariant as TabsVariant } from "./molecules/Tab";
 export {
   Tabs,
