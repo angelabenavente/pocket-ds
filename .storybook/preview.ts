@@ -38,16 +38,16 @@ const preview: Preview = {
       },
     },
     viewport: {
-      viewports: {
-        mobileTrue: {
-          name: "Mobile True (768px)",
-          styles: { width: "768px", height: "100%" },
+      options: {
+        mobile: {
+          name: "Mobile",
+          styles: { width: "768px", height: "1024px" },
           type: "mobile",
         },
-        mobileSmall: {
-          name: "Mobile (375px)",
-          styles: { width: "375px", height: "100%" },
-          type: "mobile",
+        upperMobile: {
+          name: "Upper mobile",
+          styles: { width: "1280px", height: "1024px" },
+          type: "desktop",
         },
       },
     },
