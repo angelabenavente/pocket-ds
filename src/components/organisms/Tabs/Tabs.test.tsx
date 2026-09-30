@@ -2,6 +2,7 @@ import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import type { BadgeVariant } from "../../atoms/Badge";
+import type { TabVariant } from "../../molecules/Tab";
 import { Tabs } from "./Tabs";
 
 function UncontrolledTabs(props: {
@@ -157,6 +158,23 @@ describe("Tabs", () => {
 
       expect(overviewTab).toHaveFocus();
       expect(overviewTab).toHaveAttribute("aria-selected", "true");
+    });
+  });
+
+  // Variants: every official Tabs option is propagated to its tab triggers.
+  describe("visual variants", () => {
+    it.each<TabVariant>(["underline", "pill"])("supports the %s variant", (variant) => {
+      render(
+        <Tabs.Root defaultValue="overview" variant={variant} data-testid="tabs-root">
+          <Tabs.List aria-label="Variant sections">
+            <Tabs.Tab value="overview">Overview</Tabs.Tab>
+          </Tabs.List>
+          <Tabs.Panel value="overview">Overview content</Tabs.Panel>
+        </Tabs.Root>,
+      );
+
+      expect(screen.getByTestId("tabs-root")).toHaveAttribute("data-variant", variant);
+      expect(screen.getByRole("tab")).toHaveAttribute("data-variant", variant);
     });
   });
 
