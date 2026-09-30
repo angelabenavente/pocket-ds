@@ -7,6 +7,9 @@ import { deployedVersion, publishedVersion } from "./versions";
 const installCommand = `pnpm add pocket-ds react react-dom sass
 pnpm add @fontsource/inter`;
 
+const installCommandNpm = `npm install pocket-ds react react-dom sass
+npm install @fontsource/inter`;
+
 const fontImports = `import "@fontsource/inter/latin-400.css";
 import "@fontsource/inter/latin-700.css";`;
 
@@ -81,7 +84,12 @@ export function IntroductionDocs() {
         <pre>
           <code>{installCommand}</code>
         </pre>
+        <Text variant="body-s">{page.installCommandNpm}</Text>
+        <pre>
+          <code>{installCommandNpm}</code>
+        </pre>
       </div>
+      <Text variant="body-s">{page.installNote}</Text>
       <div className={styles.snippet}>
         <Text variant="body-s">
           <span className={styles.step}>2.</span> {page.fontImports}
@@ -100,6 +108,7 @@ export function IntroductionDocs() {
           </pre>
         </div>
       </div>
+      <Text variant="body-s">{page.stylesTypes}</Text>
       <Text as="h2" id="tools" variant="heading-s">
         {page.toolsTitle}
       </Text>

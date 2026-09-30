@@ -5,8 +5,11 @@
     "contentsTitle": "Índice",
     "installTitle": "Cómo instalarlo",
     "installCommand": "Instala la librería y sus dependencias de npm.",
-    "fontImports": "Importa las fuentes en tu archivo de estilos.",
+    "installCommandNpm": "O con npm.",
+    "installNote": "Hace falta Node 24. Si el proyecto ya tiene React y React DOM, no los vuelvas a instalar: añade solo pocket-ds, sass y @fontsource/inter. El paquete pide React 19. En React 18, añade --legacy-peer-deps al comando de npm. Sass tiene que estar instalado porque los estilos se publican en Sass, no como CSS ya compilado.",
+    "fontImports": "Importa las fuentes junto al resto de estilos globales, por ejemplo en src/main.tsx.",
     "packageImports": "Importa la librería y comienza a usar sus componentes.",
+    "stylesTypes": "La importación de pocket-ds/styles incluye sus tipos. Si TypeScript dice que esa importación no tiene declaraciones de tipos, añade declare module \"pocket-ds/styles\"; en un archivo .d.ts de la aplicación.",
     "toolsTitle": "Herramientas",
     "toolsIntro": "Lo que hay debajo de pocket-ds, además de los componentes.",
     "tools": [
