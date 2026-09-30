@@ -4,6 +4,8 @@ set -eu
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
+node "$ROOT/scripts/generate-foundation-values.mjs"
+
 "$ROOT/node_modules/.bin/biome" lint . --no-errors-on-unmatched
 "$ROOT/node_modules/.bin/biome" format . --no-errors-on-unmatched
 "$ROOT/node_modules/.bin/tsc" -b

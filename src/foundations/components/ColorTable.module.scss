@@ -1,0 +1,51 @@
+.colorTable {
+  min-width: 1040px;
+
+  &__caption {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  &__tokenCell {
+    min-width: 200px;
+    white-space: nowrap;
+  }
+
+  &__sourceCell {
+    min-width: 184px;
+    white-space: nowrap;
+  }
+
+  &__tokenCell span,
+  &__sourceCell span {
+    word-break: normal;
+  }
+
+  &__valueCell {
+    font-family: var(--font-family-monospace);
+    min-width: 104px;
+    white-space: nowrap;
+  }
+
+  &__previewCell {
+    min-width: 120px;
+  }
+
+  &__descriptionCell {
+    min-width: 240px;
+    width: 100%;
+  }
+
+  &__swatch {
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--space-3xs);
+    display: block;
+    height: 32px;
+    width: 96px;
+  }
+}

@@ -1,0 +1,73 @@
+@use "../../styles/breakpoints" as bkp;
+@use "../../styles/layout";
+@use "../../styles/mixins";
+
+.foundationsPage {
+  @include mixins.body-s;
+
+  margin: 0 auto;
+  max-width: layout.$content-max-width;
+  width: 100%;
+
+  :global(p),
+  :global(li),
+  :global(table) {
+    @include mixins.body-s;
+  }
+
+  :global(code) {
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  :global(h1),
+  :global(h2) {
+    overflow-wrap: break-word;
+  }
+
+  :global(h1) {
+    @include mixins.heading-m;
+  }
+
+  :global(h2) {
+    @include mixins.heading-s;
+  }
+
+  :global(button) {
+    @include mixins.button-s;
+  }
+
+  :global(pre) {
+    margin: var(--space-s) 0;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  :global(table:not(.foundationTable)) {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+  }
+}
+
+@include bkp.above-mobile {
+  .foundationsPage {
+    @include mixins.body-m;
+
+    :global(p),
+    :global(li),
+    :global(table) {
+      @include mixins.body-m;
+    }
+
+    :global(button) {
+      @include mixins.button-m;
+    }
+
+    :global(table:not(.foundationTable)) {
+      display: table;
+      overflow-x: visible;
+    }
+  }
+}

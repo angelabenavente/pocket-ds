@@ -1,0 +1,32 @@
+.typographyTable {
+  min-width: 1440px;
+
+  &__typeCell {
+    min-width: 160px;
+    white-space: nowrap;
+  }
+
+  &__descriptionCell {
+    min-width: 280px;
+    width: 100%;
+  }
+
+  &__fontFamilyCell {
+    font-family: var(--font-family-monospace);
+    min-width: 120px;
+  }
+
+  &__fontFamilyBackupsCell {
+    font-family: var(--font-family-monospace);
+    min-width: 240px;
+  }
+
+  &__tokenCell {
+    min-width: 152px;
+    white-space: nowrap;
+
+    span {
+      word-break: normal;
+    }
+  }
+}

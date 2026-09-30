@@ -1,0 +1,54 @@
+@use "../styles/breakpoints" as bkp;
+
+// Storybook docs layout fixes for foundation pages.
+
+.sbdocs-wrapper {
+  overflow-x: clip;
+}
+
+.sbdocs-content {
+  max-width: 100%;
+}
+
+.sbdocs-toc--custom:has(.toc-wrapper:empty) {
+  display: none;
+}
+
+.docblock-colorpalette {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: var(--space-2xs);
+
+  > div {
+    flex-wrap: wrap;
+    min-width: min(100%, 256px);
+  }
+}
+
+.docblock-typeset {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  > div {
+    flex-wrap: wrap;
+  }
+}
+
+@include bkp.above-mobile {
+  .docblock-colorpalette {
+    overflow-x: visible;
+    padding-bottom: 0;
+
+    > div {
+      flex-wrap: nowrap;
+    }
+  }
+
+  .docblock-typeset {
+    overflow-x: visible;
+
+    > div {
+      flex-wrap: nowrap;
+    }
+  }
+}

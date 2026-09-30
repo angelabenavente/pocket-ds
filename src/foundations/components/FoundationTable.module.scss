@@ -1,0 +1,57 @@
+.foundationTable {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--space-xs);
+  min-width: min(100%, 576px);
+  overflow: hidden;
+  width: 100%;
+
+  &__wrapper {
+    margin: var(--space-l) 0;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  &__tokenPill {
+    border: 1px solid var(--color-border-muted);
+    border-radius: var(--space-3xs);
+    display: inline-block;
+    font-family: var(--font-family-monospace);
+    font-size: inherit;
+    line-height: inherit;
+    padding: 2px var(--space-2xs);
+    word-break: break-word;
+  }
+
+  thead tr {
+    background-color: var(--color-surface-muted);
+  }
+
+  th {
+    border-bottom: 2px solid var(--color-border-default);
+    border-right: 1px solid var(--color-border-default);
+    border-top: none;
+    font: inherit;
+    padding: var(--space-xs);
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  td {
+    border-bottom: 1px solid var(--color-border-default);
+    border-right: 1px solid var(--color-border-default);
+    padding: var(--space-xs);
+    vertical-align: middle;
+  }
+
+  th:last-child,
+  td:last-child {
+    border-right: 0;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: 0;
+  }
+}

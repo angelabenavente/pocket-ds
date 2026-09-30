@@ -4,6 +4,8 @@ set -eu
 ROOT="$(git rev-parse --show-toplevel)"
 cd "$ROOT"
 
+node "$ROOT/scripts/generate-foundation-values.mjs"
+
 BIOME="$ROOT/node_modules/.bin/biome"
 TSC="$ROOT/node_modules/.bin/tsc"
 

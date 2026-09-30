@@ -14,11 +14,17 @@
     "check:fix": "biome check . --write",
     "dev": "vite",
     "format:check": "biome format . --no-errors-on-unmatched",
+    "generate:foundations": "node scripts/generate-foundation-values.mjs",
     "licenses": "license-checker --summary --excludePrivatePackages",
     "licenses:unknown": "node scripts/check-unknown-licenses.mjs",
     "lint": "biome lint . --no-errors-on-unmatched",
+    "prebuild-storybook": "pnpm generate:foundations",
     "precommit": "sh scripts/pre-commit-check.sh",
+    "predev": "pnpm generate:foundations",
     "prepare": "husky",
+    "prestorybook": "pnpm generate:foundations",
+    "pretsc": "pnpm generate:foundations",
+    "pretypecheck": "pnpm generate:foundations",
     "quality": "sh scripts/run-quality.sh",
     "storybook": "storybook dev -p 6006",
     "test": "vitest run",
@@ -26,6 +32,8 @@
     "typecheck": "tsc -b"
   },
   "dependencies": {
+    "@fontsource/inter": "^5.3.0",
+    "classnames": "^2.5.1",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
   },

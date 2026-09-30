@@ -1,0 +1,18 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { FoundationsPage } from "./components/FoundationsPage";
+import { SpacingTable } from "./components/SpacingTable";
+import { spacingScale } from "./foundations.data";
+
+<Meta parameters={{ docs: { toc: false } }} title="Foundations/Spacing" />
+
+<FoundationsPage>
+
+# Spacing
+
+Official scale from the Spacings board (4XS through 2XL).
+
+<SpacingTable items={spacingScale} />
+
+Only a subset is exposed in `:root` today. Add a token when a second component needs the same spacing role.
+
+</FoundationsPage>
