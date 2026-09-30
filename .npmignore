@@ -1,0 +1,6 @@
+**/*.stories.tsx
+**/*.stories.ts
+**/*.stories.module.scss
+**/*.test.tsx
+**/*.test.ts
+**/*.mdx

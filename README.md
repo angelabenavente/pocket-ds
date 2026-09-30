@@ -32,6 +32,8 @@ import { Badge, Tabs, Text } from "pocket-ds";
 
 `Tabs` variants are `underline` and `pill`. Alignment is `left`, `center`, or `right`. A tab can be selected, disabled, or hovered. Hover and active are CSS states. `Badge` variants are `neutral`, `positive`, and `negative`. `Text` variants are `body-m`, `body-s`, `heading-m`, `heading-s`, `button-m`, and `button-s`. The Storybook introduction shows the install steps, the published version, and the version deployed on the site.
 
+Storybook is deployed from `vercel.json`. The build writes `storybook-static`, and every response sends a content security policy plus the usual security headers.
+
 ## Quality checks
 
 Biome handles lint and format checks. There is no Prettier config in this repo.

@@ -1,15 +1,48 @@
 {
-  "name": "fe-interview-design-system",
-  "private": true,
-  "version": "0.0.0",
+  "name": "pocket-ds",
+  "version": "0.1.0",
+  "description": "Pocket DS, a small design system.",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angelabenavente/design-system-example.git"
+  },
+  "files": [
+    "src/components",
+    "src/styles",
+    "styles.d.ts",
+    "CHANGELOG.md",
+    "!src/components/**/*.stories.tsx",
+    "!src/components/**/*.stories.ts",
+    "!src/components/**/*.stories.module.scss",
+    "!src/components/**/*.test.tsx",
+    "!src/components/**/*.test.ts",
+    "!src/components/**/*.mdx",
+    "!src/components/.gitkeep"
+  ],
+  "sideEffects": [
+    "**/*.scss",
+    "**/*.css"
+  ],
+  "types": "./src/components/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/components/index.ts",
+      "import": "./src/components/index.ts",
+      "default": "./src/components/index.ts"
+    },
+    "./styles": "./src/styles/globals.scss"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">=24.0.0"
   },
   "packageManager": "pnpm@11.18.0",
   "scripts": {
     "audit": "pnpm audit",
-    "build-storybook": "storybook build",
+    "build-storybook": "storybook build --disable-telemetry",
     "check": "biome check . --no-errors-on-unmatched",
     "check:fix": "biome check . --write",
     "dev": "vite",
@@ -22,23 +55,27 @@
     "precommit": "sh scripts/pre-commit-check.sh",
     "predev": "pnpm generate:foundations",
     "prepare": "husky",
+    "prepublishOnly": "pnpm run typecheck && pnpm test",
     "prestorybook": "pnpm generate:foundations",
     "pretsc": "pnpm generate:foundations",
     "pretypecheck": "pnpm generate:foundations",
     "quality": "sh scripts/run-quality.sh",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 6006 --disable-telemetry",
     "test": "vitest run",
     "tsc": "tsc -b",
     "typecheck": "tsc -b"
   },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sass": "^1.77.0"
+  },
   "dependencies": {
-    "@fontsource/inter": "^5.3.0",
-    "classnames": "^2.5.1",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "classnames": "^2.5.1"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.13",
+    "@fontsource/inter": "^5.3.0",
     "@storybook/addon-a11y": "^10.6.0",
     "@storybook/addon-docs": "^10.6.0",
     "@storybook/react-vite": "^10.5.9",
@@ -55,6 +92,8 @@
     "husky": "^9.1.7",
     "jsdom": "^30.1.1",
     "license-checker": "^25.0.1",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "sass": "^1.104.0",
     "storybook": "^10.6.0",
     "typescript": "^7.0.2",

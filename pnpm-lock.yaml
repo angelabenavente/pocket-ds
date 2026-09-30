@@ -16,22 +16,16 @@ importers:
 
   .:
     dependencies:
-      '@fontsource/inter':
-        specifier: ^5.3.0
-        version: 5.3.0
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
-      react:
-        specifier: ^19.3.0
-        version: 19.3.0
-      react-dom:
-        specifier: ^19.3.0
-        version: 19.3.0(react@19.3.0)
     devDependencies:
       '@biomejs/biome':
         specifier: ^2.5.13
         version: 2.5.13
+      '@fontsource/inter':
+        specifier: ^5.3.0
+        version: 5.3.0
       '@storybook/addon-a11y':
         specifier: ^10.6.0
         version: 10.6.0(storybook@10.6.0(@types/react@19.3.0)(prettier@3.3.3)(react@19.3.0))
@@ -80,6 +74,12 @@ importers:
       license-checker:
         specifier: ^25.0.1
         version: 25.0.1(supports-color@7.2.0)
+      react:
+        specifier: ^19.3.0
+        version: 19.3.0
+      react-dom:
+        specifier: ^19.3.0
+        version: 19.3.0(react@19.3.0)
       sass:
         specifier: ^1.104.0
         version: 1.104.0
