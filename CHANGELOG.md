@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.0 (2026-10-01)
+
+### Added
+
+- First stable release of Badge, Tab, Tabs, and Text.
+- Tab and badge sizing, focus, and colour states aligned with the component spec.
+- Install notes for pnpm and npm, including apps that already use React 18.
+- A type declaration for the `pocket-ds/styles` import.
+
 ## 0.1.0 (2026-09-30)
 
 ### Added

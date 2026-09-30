@@ -84,6 +84,17 @@
     "title": "Registro delle modifiche",
     "releases": [
       {
+        "version": "1.0.0",
+        "date": "1 ottobre 2026",
+        "added": "Novità",
+        "items": [
+          "Prima versione stabile di Badge, Tab, Tabs e Text.",
+          "Misure, focus e colori di tab e badge allineati alla specifica del componente.",
+          "Note di installazione con pnpm e npm, anche per le app che usano già React 18.",
+          "Dichiarazione dei tipi per l'import di pocket-ds/styles."
+        ]
+      },
+      {
         "version": "0.1.0",
         "date": "30 settembre 2026",
         "added": "Novità",
