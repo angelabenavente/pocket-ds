@@ -23,5 +23,6 @@
   "settings": "Settings",
   "settingsContent": "settings content",
   "tabPreview": "Tab preview",
-  "tabStates": "tab states"
+  "tabStates": "tab states",
+  "textSample": "The quick brown fox jumps over the lazy dog."
 }

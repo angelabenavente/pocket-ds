@@ -1,4 +1,5 @@
 import cn from "classnames";
+import { Text } from "../../../components/atoms/Text";
 import foundationStyles from "../FoundationTable/FoundationTable.module.scss";
 import styles from "./TypographyTable.module.scss";
 import type { TypographyTableProps } from "./types";
@@ -32,7 +33,9 @@ export function TypographyTable(props: TypographyTableProps) {
           {rows.map((row) => (
             <tr key={row.id}>
               <td className={styles.typographyTable__typeCell}>
-                <span className={row.id}>{row.name}</span>
+                <Text as="span" variant={row.id}>
+                  {row.name}
+                </Text>
               </td>
               <td className={styles.typographyTable__descriptionCell}>{row.description}</td>
               <td className={styles.typographyTable__fontFamilyCell}>{row.fontFamily}</td>

@@ -2,7 +2,6 @@
 @use "../../../styles/mixins";
 
 .tab {
-  @include mixins.button-s;
   @include mixins.focus-visible;
 
   align-items: center;
@@ -17,6 +16,10 @@
   padding: 0 var(--space-xs);
   position: relative;
   white-space: nowrap;
+
+  &__label {
+    color: inherit;
+  }
 
   &:disabled {
     opacity: 0.4;
@@ -60,9 +63,11 @@
 
 @include bkp.above-mobile {
   .tab {
-    @include mixins.button-m;
-
     height: 50px;
     padding: 0 var(--space-s);
+
+    &__label:global(.button-s) {
+      @include mixins.button-m;
+    }
   }
 }

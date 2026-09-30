@@ -1,6 +1,7 @@
 import cn from "classnames";
 import { forwardRef, type MouseEventHandler } from "react";
 import { Badge } from "../../atoms/Badge";
+import { Text } from "../../atoms/Text";
 import styles from "./Tab.module.scss";
 import type { TabBadge, TabTriggerProps } from "./types";
 
@@ -39,7 +40,9 @@ export const TabTrigger = forwardRef<HTMLButtonElement, TabTriggerProps>(
         disabled={disabled}
         onClick={handleClick}
       >
-        {children}
+        <Text as="span" className={styles.tab__label} variant="button-s">
+          {children}
+        </Text>
         {badge ? <TabBadgeContent {...badge} /> : null}
       </button>
     );

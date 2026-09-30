@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import cn from "classnames";
 import { useStoryCopy } from "../../../storybook/locales";
+import { Text } from "../../atoms/Text";
 import { TabTrigger } from "./Tab";
 import styles from "./Tab.stories.module.scss";
 import type { TabVariant } from "./types";
@@ -118,14 +119,18 @@ export const AllStates: Story = {
             aria-label={`${variant} ${copy.tabStates}`}
           >
             <div className={styles.tabStory__state}>
-              <span className={styles.tabStory__label}>{copy.default}</span>
+              <Text className={styles.tabStory__label} variant="body-s">
+                {copy.default}
+              </Text>
               <TabTrigger isSelected={false} onSelect={() => undefined} variant={variant}>
                 {copy.overview}
               </TabTrigger>
             </div>
 
             <div className={styles.tabStory__state}>
-              <span className={styles.tabStory__label}>{copy.hover}</span>
+              <Text className={styles.tabStory__label} variant="body-s">
+                {copy.hover}
+              </Text>
               <TabTrigger
                 className={styles.tabStory__forcedHover}
                 isSelected={false}
@@ -137,14 +142,18 @@ export const AllStates: Story = {
             </div>
 
             <div className={styles.tabStory__state}>
-              <span className={styles.tabStory__label}>{copy.selected}</span>
+              <Text className={styles.tabStory__label} variant="body-s">
+                {copy.selected}
+              </Text>
               <TabTrigger isSelected onSelect={() => undefined} variant={variant}>
                 {copy.overview}
               </TabTrigger>
             </div>
 
             <div className={styles.tabStory__state}>
-              <span className={styles.tabStory__label}>{copy.disabled}</span>
+              <Text className={styles.tabStory__label} variant="body-s">
+                {copy.disabled}
+              </Text>
               <TabTrigger disabled isSelected={false} onSelect={() => undefined} variant={variant}>
                 {copy.overview}
               </TabTrigger>

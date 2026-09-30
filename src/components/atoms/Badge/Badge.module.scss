@@ -1,18 +1,17 @@
-@use "../../../styles/mixins";
-
 .badge {
-  @include mixins.body-s;
-
   align-items: center;
   border-radius: var(--space-xs);
   color: var(--color-text-default);
   display: inline-flex;
-  font-weight: var(--font-weight-emphasis);
   justify-content: center;
   min-height: var(--space-m);
   min-width: var(--space-m);
   padding: 0 var(--space-2xs);
   white-space: nowrap;
+
+  &:global(.body-s) {
+    font-weight: var(--font-weight-emphasis);
+  }
 
   &[data-variant="neutral"] {
     background-color: var(--color-surface-muted);

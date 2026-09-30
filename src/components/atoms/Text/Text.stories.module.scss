@@ -1,0 +1,9 @@
+.textStory {
+  display: grid;
+  gap: var(--space-m);
+
+  &__item {
+    display: grid;
+    gap: var(--space-3xs);
+  }
+}

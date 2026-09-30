@@ -1,5 +1,3 @@
-@use "../../../styles/mixins";
-
 .tabStory {
   display: grid;
   gap: var(--space-l);
@@ -18,8 +16,6 @@
   }
 
   &__label {
-    @include mixins.body-s;
-
     color: var(--color-text-muted);
   }
 

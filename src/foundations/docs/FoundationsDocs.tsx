@@ -1,8 +1,9 @@
+import { Text } from "../../components/atoms/Text";
 import { type StoryCopy, useStoryCopy } from "../../storybook/locales";
 import { ColorTable } from "../components/ColorTable";
 import { SpacingTable } from "../components/SpacingTable";
 import { TokenTable } from "../components/TokenTable";
-import { TypographyTable } from "../components/TypographyTable";
+import { TypographyTable } from "../components/TypographyTable/index.ts";
 import {
   breakpointRows,
   breakpoints,
@@ -59,17 +60,17 @@ export function ColorsDocs() {
 
   return (
     <>
-      <h1>{colors.title}</h1>
-      <p>{colors.intro}</p>
-      <h2>{colors.semanticTitle}</h2>
-      <p>{colors.semanticIntro}</p>
+      <Text variant="heading-m">{colors.title}</Text>
+      <Text variant="body-s">{colors.intro}</Text>
+      <Text variant="heading-s">{colors.semanticTitle}</Text>
+      <Text variant="body-s">{colors.semanticIntro}</Text>
       <ColorTable
         caption={colors.semanticCaption}
         labels={colors.columns}
         rows={semanticColors.map((color) => localizeColor(color, copy))}
       />
-      <h2>{colors.reservedTitle}</h2>
-      <p>{colors.reservedIntro}</p>
+      <Text variant="heading-s">{colors.reservedTitle}</Text>
+      <Text variant="body-s">{colors.reservedIntro}</Text>
       <ColorTable
         caption={colors.reservedCaption}
         labels={colors.columns}
@@ -85,14 +86,14 @@ export function TypographyDocs() {
 
   return (
     <>
-      <h1>{typography.title}</h1>
-      <p>{typography.intro}</p>
-      <p>{typography.usage}</p>
+      <Text variant="heading-m">{typography.title}</Text>
+      <Text variant="body-s">{typography.intro}</Text>
+      <Text variant="body-s">{typography.usage}</Text>
       <TypographyTable
         labels={typography.columns}
         rows={typographyStyles.map((row) => localizeTypography(row, copy))}
       />
-      <p>{typography.presets}</p>
+      <Text variant="body-s">{typography.presets}</Text>
     </>
   );
 }
@@ -103,13 +104,13 @@ export function SpacingDocs() {
 
   return (
     <>
-      <h1>{spacing.title}</h1>
-      <p>{spacing.intro}</p>
+      <Text variant="heading-m">{spacing.title}</Text>
+      <Text variant="body-s">{spacing.intro}</Text>
       <SpacingTable
         items={spacingScale}
         labels={{ ...spacing.columns, primitiveOnly: spacing.primitiveOnly }}
       />
-      <p>{spacing.note}</p>
+      <Text variant="body-s">{spacing.note}</Text>
     </>
   );
 }
@@ -123,8 +124,8 @@ export function BreakpointsDocs() {
 
   return (
     <>
-      <h1>{content.title}</h1>
-      <p>{content.intro}</p>
+      <Text variant="heading-m">{content.title}</Text>
+      <Text variant="body-s">{content.intro}</Text>
       <TokenTable
         columns={[
           { header: content.columns.figma, accessor: "figma" },
@@ -133,15 +134,15 @@ export function BreakpointsDocs() {
         ]}
         rows={rows}
       />
-      <p>
+      <Text variant="body-s">
         {content.variable}: <code>{breakpoints.sassVariable}</code> ={" "}
         <strong>{breakpoints.mobileMax}</strong> {content.inFile}{" "}
         <code>src/styles/_breakpoints.scss</code>.
-      </p>
+      </Text>
       <pre>
         <code>{breakpointExample}</code>
       </pre>
-      <p>{content.upcoming}</p>
+      <Text variant="body-s">{content.upcoming}</Text>
     </>
   );
 }
