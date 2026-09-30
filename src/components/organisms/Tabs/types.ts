@@ -39,7 +39,7 @@ export type TabsListProps = Omit<HTMLAttributes<HTMLDivElement>, "aria-label" | 
 export interface TabsTabProps
   extends Omit<
     ComponentPropsWithoutRef<typeof TabTrigger>,
-    "aria-controls" | "aria-selected" | "id" | "isSelected" | "onSelect" | "role"
+    "aria-controls" | "aria-selected" | "id" | "isSelected" | "onSelect" | "role" | "tabIndex"
   > {
   value: string;
 }

@@ -1,4 +1,11 @@
-import { createContext, useContext, useId, useMemo, useState } from "react";
+import {
+  createContext,
+  type KeyboardEvent as ReactKeyboardEvent,
+  useContext,
+  useId,
+  useMemo,
+  useState,
+} from "react";
 import { TabTrigger } from "../../molecules/Tab";
 import type {
   TabsContextValue,
@@ -45,21 +52,55 @@ export function TabsRoot(props: TabsRootProps) {
 }
 
 export function TabsList(props: TabsListProps) {
-  return <div {...props} role="tablist" aria-orientation="horizontal" />;
+  const { onKeyDown, ...listProps } = props;
+
+  const handleKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
+    onKeyDown?.(event);
+
+    if (event.defaultPrevented) {
+      return;
+    }
+
+    const tabs = Array.from(
+      event.currentTarget.querySelectorAll<HTMLButtonElement>('[role="tab"]:not(:disabled)'),
+    );
+    const currentTab = (event.target as HTMLElement).closest<HTMLButtonElement>('[role="tab"]');
+    const currentIndex = currentTab ? tabs.indexOf(currentTab) : -1;
+
+    if (currentIndex < 0) {
+      return;
+    }
+
+    const nextIndex = getNextTabIndex(event.key, currentIndex, tabs.length);
+
+    if (nextIndex === null) {
+      return;
+    }
+
+    event.preventDefault();
+    tabs[nextIndex].focus();
+    tabs[nextIndex].click();
+  };
+
+  return (
+    <div {...listProps} role="tablist" aria-orientation="horizontal" onKeyDown={handleKeyDown} />
+  );
 }
 
 export function TabsTab(props: TabsTabProps) {
   const { value, ...tabProps } = props;
   const { activeValue, baseId, selectValue } = useTabsContext("Tabs.Tab");
   const valueId = toIdPart(value);
+  const isSelected = activeValue === value;
 
   return (
     <TabTrigger
       {...tabProps}
       id={`${baseId}-tab-${valueId}`}
       aria-controls={`${baseId}-panel-${valueId}`}
-      isSelected={activeValue === value}
+      isSelected={isSelected}
       onSelect={() => selectValue(value)}
+      tabIndex={isSelected ? 0 : -1}
     />
   );
 }
@@ -92,6 +133,21 @@ function useTabsContext(componentName: string) {
 
 function toIdPart(value: string) {
   return encodeURIComponent(value);
+}
+
+function getNextTabIndex(key: string, currentIndex: number, tabCount: number) {
+  switch (key) {
+    case "ArrowRight":
+      return (currentIndex + 1) % tabCount;
+    case "ArrowLeft":
+      return (currentIndex - 1 + tabCount) % tabCount;
+    case "Home":
+      return 0;
+    case "End":
+      return tabCount - 1;
+    default:
+      return null;
+  }
 }
 
 export const Tabs = {
