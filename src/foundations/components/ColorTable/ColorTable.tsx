@@ -1,14 +1,11 @@
 import cn from "classnames";
-import type { ColorDoc } from "../foundations.data";
+import foundationStyles from "../FoundationTable/FoundationTable.module.scss";
 import styles from "./ColorTable.module.scss";
-import foundationStyles from "./FoundationTable.module.scss";
+import type { ColorTableProps } from "./types";
 
-type ColorTableProps = {
-  caption: string;
-  rows: ColorDoc[];
-};
+export function ColorTable(props: ColorTableProps) {
+  const { caption, rows } = props;
 
-export function ColorTable({ caption, rows }: ColorTableProps) {
   return (
     <div className={foundationStyles.foundationTable__wrapper}>
       <table

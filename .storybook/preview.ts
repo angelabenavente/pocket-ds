@@ -1,7 +1,7 @@
 import type { Preview } from "@storybook/react-vite";
 import "@fontsource/inter/latin-400.css";
 import "@fontsource/inter/latin-700.css";
-import "../src/foundations/foundations.docs.scss";
+import "../src/foundations/styles/foundations.docs.scss";
 import "../src/styles/globals.scss";
 
 const preview: Preview = {

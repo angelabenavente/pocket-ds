@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import * as sass from "sass";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const outputPath = resolve(root, "src/foundations/foundations.values.generated.ts");
+const outputPath = resolve(root, "src/foundations/data/foundations.values.generated.ts");
 
 const primitiveNames = [
   "color-foundation-white",

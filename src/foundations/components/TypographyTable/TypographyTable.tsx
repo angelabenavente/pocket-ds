@@ -1,13 +1,11 @@
 import cn from "classnames";
-import type { TypographyStyleDoc } from "../foundations.data";
-import foundationStyles from "./FoundationTable.module.scss";
+import foundationStyles from "../FoundationTable/FoundationTable.module.scss";
 import styles from "./TypographyTable.module.scss";
+import type { TypographyTableProps } from "./types";
 
-type TypographyTableProps = {
-  rows: TypographyStyleDoc[];
-};
+export function TypographyTable(props: TypographyTableProps) {
+  const { rows } = props;
 
-export function TypographyTable({ rows }: TypographyTableProps) {
   return (
     <div className={foundationStyles.foundationTable__wrapper}>
       <table

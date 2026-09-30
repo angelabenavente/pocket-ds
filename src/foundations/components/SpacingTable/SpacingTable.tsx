@@ -1,13 +1,11 @@
 import cn from "classnames";
-import type { SpacingDoc } from "../foundations.data";
-import foundationStyles from "./FoundationTable.module.scss";
+import foundationStyles from "../FoundationTable/FoundationTable.module.scss";
 import styles from "./SpacingTable.module.scss";
+import type { SpacingTableProps } from "./types";
 
-type SpacingTableProps = {
-  items: SpacingDoc[];
-};
+export function SpacingTable(props: SpacingTableProps) {
+  const { items } = props;
 
-export function SpacingTable({ items }: SpacingTableProps) {
   return (
     <div className={foundationStyles.foundationTable__wrapper}>
       <table className={cn(foundationStyles.foundationTable, "foundationTable", "sb-unstyled")}>

@@ -1,21 +1,10 @@
 import cn from "classnames";
-import foundationStyles from "./FoundationTable.module.scss";
+import foundationStyles from "../FoundationTable/FoundationTable.module.scss";
+import type { TokenTableProps } from "./types";
 
-export type TokenTableColumn<T extends Record<string, string>> = {
-  header: string;
-  accessor: keyof T;
-  mono?: boolean;
-};
+export function TokenTable<T extends Record<string, string>>(props: TokenTableProps<T>) {
+  const { columns, rows } = props;
 
-type TokenTableProps<T extends Record<string, string>> = {
-  columns: TokenTableColumn<T>[];
-  rows: T[];
-};
-
-export function TokenTable<T extends Record<string, string>>({
-  columns,
-  rows,
-}: TokenTableProps<T>) {
   return (
     <div className={foundationStyles.foundationTable__wrapper}>
       <table className={cn(foundationStyles.foundationTable, "foundationTable", "sb-unstyled")}>

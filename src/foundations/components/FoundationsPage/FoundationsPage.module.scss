@@ -1,6 +1,6 @@
-@use "../../styles/breakpoints" as bkp;
-@use "../../styles/layout";
-@use "../../styles/mixins";
+@use "../../../styles/breakpoints" as bkp;
+@use "../../../styles/layout";
+@use "../../../styles/mixins";
 
 .foundationsPage {
   @include mixins.body-s;
