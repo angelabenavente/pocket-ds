@@ -1,9 +1,20 @@
+import cn from "classnames";
 import { forwardRef, type MouseEventHandler } from "react";
+import styles from "./Tab.module.scss";
 import type { TabTriggerProps } from "./types";
 
 export const TabTrigger = forwardRef<HTMLButtonElement, TabTriggerProps>(
   function TabTrigger(props, ref) {
-    const { children, disabled, isSelected, onClick, onSelect, ...buttonProps } = props;
+    const {
+      children,
+      className,
+      disabled,
+      isSelected,
+      onClick,
+      onSelect,
+      variant = "underline",
+      ...buttonProps
+    } = props;
 
     const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
       onClick?.(event);
@@ -20,6 +31,8 @@ export const TabTrigger = forwardRef<HTMLButtonElement, TabTriggerProps>(
         type="button"
         role="tab"
         aria-selected={isSelected}
+        className={cn(styles.tab, className)}
+        data-variant={variant}
         data-state={isSelected ? "active" : "inactive"}
         disabled={disabled}
         onClick={handleClick}

@@ -1,0 +1,67 @@
+@use "../../../styles/breakpoints" as bkp;
+@use "../../../styles/mixins";
+
+.tab {
+  @include mixins.button-s;
+  @include mixins.focus-visible;
+
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: var(--color-text-default);
+  display: inline-flex;
+  flex: 0 0 auto;
+  height: 42px;
+  justify-content: center;
+  padding: 0 var(--space-xs);
+  position: relative;
+  white-space: nowrap;
+
+  &:disabled {
+    opacity: 0.4;
+  }
+
+  &[data-variant="underline"] {
+    &::after {
+      background-color: transparent;
+      bottom: 0;
+      content: "";
+      height: 2px;
+      left: 0;
+      position: absolute;
+      right: 0;
+    }
+
+    &:hover:not(:disabled, [aria-selected="true"])::after,
+    &:active:not(:disabled, [aria-selected="true"])::after {
+      background-color: var(--color-border-muted);
+    }
+
+    &[aria-selected="true"]::after {
+      background-color: var(--color-surface-emphasis);
+    }
+  }
+
+  &[data-variant="pill"] {
+    border-radius: var(--space-xl);
+
+    &:hover:not(:disabled, [aria-selected="true"]),
+    &:active:not(:disabled, [aria-selected="true"]) {
+      background-color: var(--color-surface-muted);
+    }
+
+    &[aria-selected="true"] {
+      background-color: var(--color-surface-emphasis);
+      color: var(--color-text-on-emphasis);
+    }
+  }
+}
+
+@include bkp.above-mobile {
+  .tab {
+    @include mixins.button-m;
+
+    height: 50px;
+    padding: 0 var(--space-s);
+  }
+}

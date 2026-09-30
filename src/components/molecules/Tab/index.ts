@@ -1,2 +1,2 @@
 export { TabTrigger } from "./Tab";
-export type { TabTriggerProps } from "./types";
+export type { TabTriggerProps, TabVariant } from "./types";
