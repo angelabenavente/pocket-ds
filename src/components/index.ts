@@ -1,4 +1,5 @@
 export { Badge, type BadgeProps, type BadgeVariant } from "./atoms/Badge";
+export { FocusRing, type FocusRingProps } from "./atoms/FocusRing";
 export { Text, type TextElement, type TextProps, type TextVariant } from "./atoms/Text";
 export type {
   TabBadge as TabsTabBadge,

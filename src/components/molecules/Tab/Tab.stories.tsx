@@ -11,7 +11,6 @@ import type { Decorator, Meta, StoryObj } from "@storybook/react-vite";
 import { useContext } from "react";
 import { useStoryCopy } from "../../../storybook/locales";
 import { TabTrigger } from "./Tab";
-import styles from "./Tab.stories.module.scss";
 import type { TabVariant } from "./types";
 
 const variants: TabVariant[] = ["underline", "pill"];
@@ -120,7 +119,21 @@ export const Selected: Story = {
 export const Hover: Story = {
   decorators: [
     (Story) => (
-      <div className={styles.tabStory__forcedHover}>
+      <div className="tabStory__forcedHover">
+        <Story />
+      </div>
+    ),
+  ],
+};
+
+export const Active: Story = {
+  args: {
+    isSelected: true,
+    variant: "pill",
+  },
+  decorators: [
+    (Story) => (
+      <div className="tabStory__forcedActive">
         <Story />
       </div>
     ),

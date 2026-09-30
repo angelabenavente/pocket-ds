@@ -1,12 +1,13 @@
+@use "../../../styles/breakpoints" as bkp;
+
 .badge {
   align-items: center;
-  border-radius: var(--space-xs);
+  border-radius: var(--space-2xs);
   color: var(--color-text-default);
   display: inline-flex;
+  height: 22px;
   justify-content: center;
-  min-height: var(--space-m);
-  min-width: var(--space-m);
-  padding: 0 var(--space-2xs);
+  padding: var(--space-4xs) var(--space-3xs);
   white-space: nowrap;
 
   &:global(.body-s) {
@@ -23,5 +24,13 @@
 
   &[data-variant="negative"] {
     background-color: var(--color-surface-negative);
+  }
+}
+
+@include bkp.above-mobile {
+  .badge {
+    border-radius: var(--space-xs);
+    height: 26px;
+    padding: var(--space-3xs) var(--space-2xs);
   }
 }

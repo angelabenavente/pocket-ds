@@ -29,6 +29,18 @@
         "title": "Superficie di enfasi",
         "description": "Tab selezionato e altre superfici enfatizzate."
       },
+      "--color-surface-emphasis-hover": {
+        "title": "Superficie di enfasi in hover",
+        "description": "Sfondo del pill selezionato al passaggio del cursore."
+      },
+      "--color-surface-emphasis-active": {
+        "title": "Superficie di enfasi in active",
+        "description": "Sfondo del pill selezionato mentre è premuto."
+      },
+      "--color-surface-subtle": {
+        "title": "Superficie sottile",
+        "description": "Sfondo del pill non selezionato al passaggio del cursore."
+      },
       "--color-surface-positive": {
         "title": "Superficie positiva",
         "description": "Sfondo del badge positivo."
@@ -41,6 +53,10 @@
         "title": "Bordo predefinito",
         "description": "Bordi e divisori predefiniti."
       },
+      "--color-border-outline-focus": {
+        "title": "Bordo del contorno in focus",
+        "description": "Bordo del contorno quando un controllo ha il focus da tastiera."
+      },
       "--color-focus-ring": {
         "title": "Anello di focus",
         "description": "Indicatore visibile del focus da tastiera."
@@ -49,21 +65,9 @@
         "title": "Bordo attenuato",
         "description": "Bordi di hover e active, incluse le sottolineature dei tab."
       },
-      "$color-surface-subtle": {
-        "title": "Superficie sottile",
-        "description": "Sfondo di hover sottile per i controlli pill."
-      },
       "$color-surface-muted": {
         "title": "Superficie attenuata",
-        "description": "Badge neutri e sfondi dei pill attivi."
-      },
-      "$color-neutral-800": {
-        "title": "Neutro 800",
-        "description": "Stato hover del pill selezionato."
-      },
-      "$color-neutral-700": {
-        "title": "Neutro 700",
-        "description": "Stato active del pill selezionato."
+        "description": "Badge neutri e sfondo del pill non selezionato mentre è premuto."
       }
     }
   },

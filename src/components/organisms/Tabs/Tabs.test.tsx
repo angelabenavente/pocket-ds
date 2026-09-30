@@ -36,9 +36,10 @@ describe("Tabs", () => {
 
       expect(screen.getByRole("tablist", { name: "Account sections" })).toBeInTheDocument();
       expect(selectedTab).toHaveAttribute("aria-selected", "true");
-      expect(selectedTab).toHaveAttribute("tabindex", "0");
+      expect(selectedTab).not.toHaveAttribute("tabindex", "-1");
       expect(inactiveTab).toHaveAttribute("aria-selected", "false");
-      expect(inactiveTab).toHaveAttribute("tabindex", "-1");
+      expect(inactiveTab).not.toHaveAttribute("tabindex", "-1");
+      expect(screen.getByRole("tab", { name: "Activity" })).toBeDisabled();
       expect(selectedTab).toHaveAttribute("aria-controls", visiblePanel.id);
       expect(visiblePanel).toHaveAttribute("aria-labelledby", selectedTab.id);
       expect(visiblePanel).toHaveTextContent("Overview content");
@@ -98,7 +99,29 @@ describe("Tabs", () => {
   });
 
   describe("keyboard navigation", () => {
-    it("moves focus, selects automatically, wraps, and skips disabled tabs", async () => {
+    it("tabs through every enabled tab without selecting it", async () => {
+      const user = userEvent.setup();
+      render(<UncontrolledTabs />);
+
+      const overviewTab = screen.getByRole("tab", { name: "Overview" });
+      const activityTab = screen.getByRole("tab", { name: "Activity" });
+      const settingsTab = screen.getByRole("tab", { name: "Settings" });
+
+      await user.tab();
+      expect(overviewTab).toHaveFocus();
+
+      await user.tab();
+      expect(settingsTab).toHaveFocus();
+      expect(settingsTab).toHaveAttribute("aria-selected", "false");
+      expect(overviewTab).toHaveAttribute("aria-selected", "true");
+      expect(activityTab).not.toHaveFocus();
+
+      await user.tab();
+      expect(overviewTab).not.toHaveFocus();
+      expect(settingsTab).not.toHaveFocus();
+    });
+
+    it("moves focus without selecting, wraps, and skips disabled tabs", async () => {
       const user = userEvent.setup();
       render(<UncontrolledTabs />);
 
@@ -111,7 +134,8 @@ describe("Tabs", () => {
 
       await user.keyboard("{ArrowRight}");
       expect(settingsTab).toHaveFocus();
-      expect(settingsTab).toHaveAttribute("aria-selected", "true");
+      expect(settingsTab).toHaveAttribute("aria-selected", "false");
+      expect(overviewTab).toHaveAttribute("aria-selected", "true");
       expect(activityTab).not.toHaveFocus();
 
       await user.keyboard("{ArrowRight}");

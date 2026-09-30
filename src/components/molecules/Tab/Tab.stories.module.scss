@@ -1,9 +1,0 @@
-.tabStory__forcedHover {
-  [role="tab"][data-variant="underline"]::after {
-    background-color: var(--color-border-muted);
-  }
-
-  [role="tab"][data-variant="pill"] {
-    background-color: var(--color-surface-muted);
-  }
-}

@@ -102,7 +102,6 @@ function TabsList(props: TabsListProps) {
 
     event.preventDefault();
     tabs[nextIndex].focus();
-    tabs[nextIndex].click();
   };
 
   return (
@@ -138,7 +137,6 @@ function TabsTrigger(props: Omit<TabsTabProps, "children"> & { index: number }) 
       isSelected={isSelected}
       onClick={handleClick}
       onSelect={() => selectValue(index)}
-      tabIndex={isSelected ? 0 : -1}
       variant={variant}
     />
   );

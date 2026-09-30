@@ -1,0 +1,9 @@
+.focusRing {
+  border: var(--space-4xs) solid var(--color-border-outline-focus);
+  border-radius: 100px;
+  box-sizing: border-box;
+  margin: 0;
+  pointer-events: none;
+  position: fixed;
+  z-index: 999999;
+}

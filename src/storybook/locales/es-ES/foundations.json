@@ -29,6 +29,18 @@
         "title": "Superficie de énfasis",
         "description": "Tab seleccionado y otras superficies enfatizadas."
       },
+      "--color-surface-emphasis-hover": {
+        "title": "Superficie de énfasis en hover",
+        "description": "Fondo del pill seleccionado al pasar el cursor."
+      },
+      "--color-surface-emphasis-active": {
+        "title": "Superficie de énfasis en active",
+        "description": "Fondo del pill seleccionado mientras está pulsado."
+      },
+      "--color-surface-subtle": {
+        "title": "Superficie sutil",
+        "description": "Fondo del pill no seleccionado al pasar el cursor."
+      },
       "--color-surface-positive": {
         "title": "Superficie positiva",
         "description": "Fondo de la insignia positiva."
@@ -36,6 +48,10 @@
       "--color-surface-negative": {
         "title": "Superficie negativa",
         "description": "Fondo de la insignia negativa."
+      },
+      "--color-border-outline-focus": {
+        "title": "Borde del contorno en foco",
+        "description": "Borde del contorno cuando un control tiene el foco del teclado."
       },
       "--color-border-default": {
         "title": "Borde predeterminado",
@@ -49,21 +65,9 @@
         "title": "Borde atenuado",
         "description": "Bordes de hover y active, incluidos los subrayados de los tabs."
       },
-      "$color-surface-subtle": {
-        "title": "Superficie sutil",
-        "description": "Fondo de hover sutil para controles pill."
-      },
       "$color-surface-muted": {
         "title": "Superficie atenuada",
-        "description": "Insignias neutras y fondos de pill activos."
-      },
-      "$color-neutral-800": {
-        "title": "Neutro 800",
-        "description": "Estado hover del pill seleccionado."
-      },
-      "$color-neutral-700": {
-        "title": "Neutro 700",
-        "description": "Estado active del pill seleccionado."
+        "description": "Insignias neutras y fondo del pill no seleccionado mientras está pulsado."
       }
     }
   },

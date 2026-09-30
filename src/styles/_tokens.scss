@@ -5,12 +5,18 @@
   --color-text-default: #{p.$color-neutral-900};
   --color-text-on-emphasis: #{p.$color-foundation-white};
   --color-surface-emphasis: #{p.$color-neutral-900};
+  --color-surface-emphasis-hover: #{p.$color-neutral-800};
+  --color-surface-emphasis-active: #{p.$color-neutral-700};
   --color-surface-positive: #{p.$color-badge-positive};
   --color-surface-negative: #{p.$color-badge-negative};
   --color-border-default: #{p.$color-border-subtle};
   --color-border-muted: #{p.$color-border-muted};
+  --color-border-outline-focus: #{p.$color-foundation-black};
+  --color-outline-focus: #{p.$color-foundation-white};
   --color-surface-muted: #{p.$color-surface-muted};
+  --color-surface-subtle: #{p.$color-surface-subtle};
   --color-focus-ring: #{p.$color-foundation-black};
+  --color-outline-focus: #{p.$color-foundation-white};
 
   --space-4xs: #{p.$space-4xs};
   --space-3xs: #{p.$space-3xs};

@@ -29,6 +29,18 @@
         "title": "Surface emphasis",
         "description": "Selected tab and other emphasized surfaces."
       },
+      "--color-surface-emphasis-hover": {
+        "title": "Surface emphasis hover",
+        "description": "Selected pill background on hover."
+      },
+      "--color-surface-emphasis-active": {
+        "title": "Surface emphasis active",
+        "description": "Selected pill background while pressed."
+      },
+      "--color-surface-subtle": {
+        "title": "Surface subtle",
+        "description": "Unselected pill background on hover."
+      },
       "--color-surface-positive": {
         "title": "Surface positive",
         "description": "Positive badge background."
@@ -41,6 +53,10 @@
         "title": "Border default",
         "description": "Default borders and dividers."
       },
+      "--color-border-outline-focus": {
+        "title": "Border outline focus",
+        "description": "Outline border when a control has keyboard focus."
+      },
       "--color-focus-ring": {
         "title": "Focus ring",
         "description": "Visible keyboard focus indicator."
@@ -49,21 +65,9 @@
         "title": "Border muted",
         "description": "Hover and active borders, including tab underlines."
       },
-      "$color-surface-subtle": {
-        "title": "Surface subtle",
-        "description": "Subtle hover background for pill controls."
-      },
       "$color-surface-muted": {
         "title": "Surface muted",
-        "description": "Neutral badges and active pill backgrounds."
-      },
-      "$color-neutral-800": {
-        "title": "Neutral 800",
-        "description": "Selected pill hover state."
-      },
-      "$color-neutral-700": {
-        "title": "Neutral 700",
-        "description": "Selected pill active state."
+        "description": "Neutral badges and the pressed background of an unselected pill."
       }
     }
   },

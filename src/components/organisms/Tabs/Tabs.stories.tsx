@@ -63,7 +63,7 @@ const meta = {
 
 export default meta;
 
-function AccountTabs(args: TabsStoryArgs) {
+function renderAccountTabs(args: TabsStoryArgs) {
   const { align, variant } = args;
   const label = args["aria-label"];
 
@@ -80,28 +80,28 @@ function AccountTabs(args: TabsStoryArgs) {
 }
 
 export const Underline = {
-  render: (args: TabsStoryArgs) => <AccountTabs {...args} />,
+  render: renderAccountTabs,
 };
 
 export const Pill = {
   args: {
     variant: "pill",
   },
-  render: (args: TabsStoryArgs) => <AccountTabs {...args} />,
+  render: renderAccountTabs,
 };
 
 export const Center = {
   args: {
     align: "center",
   },
-  render: (args: TabsStoryArgs) => <AccountTabs {...args} />,
+  render: renderAccountTabs,
 };
 
 export const Right = {
   args: {
     align: "right",
   },
-  render: (args: TabsStoryArgs) => <AccountTabs {...args} />,
+  render: renderAccountTabs,
 };
 
 export const WithBadges = {
@@ -114,7 +114,7 @@ export const WithBadges = {
         label="Overview"
         badge={{
           label: "3",
-          variant: "neutral",
+          variant: "negative",
           "aria-label": "3 overview notifications",
         }}
       >

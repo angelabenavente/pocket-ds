@@ -40,6 +40,27 @@ export const semanticColors: ColorDoc[] = [
     description: "Selected tab and other emphasized surfaces.",
   },
   {
+    title: "Surface emphasis hover",
+    token: "--color-surface-emphasis-hover",
+    value: colorValue("color-neutral-800"),
+    source: "$color-neutral-800",
+    description: "Selected pill background on hover.",
+  },
+  {
+    title: "Surface emphasis active",
+    token: "--color-surface-emphasis-active",
+    value: colorValue("color-neutral-700"),
+    source: "$color-neutral-700",
+    description: "Selected pill background while pressed.",
+  },
+  {
+    title: "Surface subtle",
+    token: "--color-surface-subtle",
+    value: colorValue("color-surface-subtle"),
+    source: "$color-surface-subtle",
+    description: "Unselected pill background on hover.",
+  },
+  {
     title: "Surface positive",
     token: "--color-surface-positive",
     value: colorValue("color-badge-positive"),
@@ -61,6 +82,13 @@ export const semanticColors: ColorDoc[] = [
     description: "Default borders and dividers.",
   },
   {
+    title: "Border outline focus",
+    token: "--color-border-outline-focus",
+    value: colorValue("color-neutral-900"),
+    source: "$color-neutral-900",
+    description: "Outline border when a control has keyboard focus.",
+  },
+  {
     title: "Focus ring",
     token: "--color-focus-ring",
     value: colorValue("color-foundation-black"),
@@ -77,28 +105,10 @@ export const reservedPrimitiveColors: ColorDoc[] = [
     description: "Hover and active borders, including tab underlines.",
   },
   {
-    title: "Surface subtle",
-    token: "$color-surface-subtle",
-    value: colorValue("color-surface-subtle"),
-    description: "Subtle hover background for pill controls.",
-  },
-  {
     title: "Surface muted",
     token: "$color-surface-muted",
     value: colorValue("color-surface-muted"),
     description: "Neutral badges and active pill backgrounds.",
-  },
-  {
-    title: "Neutral 800",
-    token: "$color-neutral-800",
-    value: colorValue("color-neutral-800"),
-    description: "Selected pill hover state.",
-  },
-  {
-    title: "Neutral 700",
-    token: "$color-neutral-700",
-    value: colorValue("color-neutral-700"),
-    description: "Selected pill active state.",
   },
 ];
 
