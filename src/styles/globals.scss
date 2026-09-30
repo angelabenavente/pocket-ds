@@ -1,0 +1,9 @@
+@use "reset";
+@use "tokens";
+@use "mixins";
+@use "utilities";
+
+body {
+  color: var(--color-text-default);
+  @include mixins.body-m;
+}

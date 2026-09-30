@@ -1,0 +1,7 @@
+$mobile-max: 768px !default;
+
+@mixin above-mobile {
+  @media (min-width: ($mobile-max + 1px)) {
+    @content;
+  }
+}

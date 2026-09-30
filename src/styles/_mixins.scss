@@ -1,0 +1,62 @@
+// --------------------------------------------------
+// Typography
+// --------------------------------------------------
+
+@mixin body-m {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body-m);
+  font-weight: var(--font-weight-body-m);
+  letter-spacing: var(--letter-spacing-body-m);
+  line-height: var(--line-height-body-m);
+}
+
+@mixin body-s {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body-s);
+  font-weight: var(--font-weight-body-s);
+  letter-spacing: var(--letter-spacing-body-s);
+  line-height: var(--line-height-body-s);
+}
+
+@mixin button-m {
+  font-family: var(--font-family-button);
+  font-size: var(--font-size-button-m);
+  font-weight: var(--font-weight-button);
+  letter-spacing: var(--letter-spacing-button);
+  line-height: var(--line-height-button-m);
+}
+
+@mixin button-s {
+  font-family: var(--font-family-button);
+  font-size: var(--font-size-button-s);
+  font-weight: var(--font-weight-button);
+  letter-spacing: var(--letter-spacing-button);
+  line-height: var(--line-height-button-s);
+}
+
+@mixin heading-m {
+  font-family: var(--font-family-custom);
+  font-size: var(--font-size-heading-m);
+  font-weight: var(--font-weight-heading);
+  letter-spacing: var(--letter-spacing-heading);
+  line-height: var(--line-height-heading-m);
+}
+
+@mixin heading-s {
+  font-family: var(--font-family-custom);
+  font-size: var(--font-size-heading-s);
+  font-weight: var(--font-weight-heading);
+  letter-spacing: var(--letter-spacing-heading);
+  line-height: var(--line-height-heading-s);
+}
+
+// --------------------------------------------------
+// Focus
+// --------------------------------------------------
+
+@mixin focus-visible($width: 2px) {
+  &:focus-visible {
+    outline: $width solid var(--color-focus-ring);
+    outline-offset: var(--space-2xs);
+  }
+}

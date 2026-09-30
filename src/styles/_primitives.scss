@@ -1,0 +1,51 @@
+// Official Prima values. Sass variables only; no CSS output from this file.
+
+// Color
+$color-foundation-white: #ffffff;
+$color-foundation-black: #000000;
+$color-neutral-900: #1b2134;
+$color-border-subtle: #d3d3dc;
+$color-border-muted: #c4c5cf;
+$color-surface-subtle: #f6f6fa;
+$color-surface-muted: #f1f1f7;
+$color-neutral-800: #343a4e;
+$color-neutral-700: #585d71;
+$color-badge-positive: #b1ffc7;
+$color-badge-negative: #ffbfb1;
+
+// Spacing scale (official names → px)
+$space-4xs: 2px;
+$space-3xs: 4px;
+$space-2xs: 8px;
+$space-xs: 12px;
+$space-s: 16px;
+$space-m: 20px;
+$space-l: 24px;
+$space-xl: 32px;
+$space-2xl: 48px;
+
+// Typography — Typography board + component spec
+// Font family
+$font-family-base: Inter;
+$font-family-custom: "CircularXX";
+$font-family-monospace: ui-monospace;
+$font-family-base-backups: system-ui, sans-serif;
+$font-family-custom-backups: $font-family-base, sans-serif;
+$font-family-monospace-backups: "SFMono-Regular", monospace;
+
+$font-stack-body: $font-family-base, $font-family-base-backups;
+$font-stack-custom: $font-family-custom, $font-family-custom-backups;
+$font-stack-monospace: $font-family-monospace, $font-family-monospace-backups;
+
+$font-weight-regular: 400;
+$font-weight-emphasis: 700;
+$font-size-body-m: 14px;
+$font-size-body-s: 12px;
+$line-height-body: 1.5;
+$letter-spacing-body: 0;
+
+// Storybook documentation only; not part of the official Prima specification.
+$font-size-heading-m: 32px;
+$line-height-heading-m: 40px;
+$font-size-heading-s: 24px;
+$line-height-heading-s: 32px;

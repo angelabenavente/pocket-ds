@@ -1,0 +1,39 @@
+@use "mixins";
+
+// Typography
+.heading-m {
+  @include mixins.heading-m;
+}
+
+.heading-s {
+  @include mixins.heading-s;
+}
+
+.body-m {
+  @include mixins.body-m;
+}
+
+.body-s {
+  @include mixins.body-s;
+}
+
+.button-m {
+  @include mixins.button-m;
+}
+
+.button-s {
+  @include mixins.button-s;
+}
+
+// Spacing
+$spacing-scale: 4xs, 3xs, 2xs, xs, s, m, l, xl, 2xl;
+
+@each $size in $spacing-scale {
+  .margin-#{$size} {
+    margin: var(--space-#{$size});
+  }
+
+  .padding-#{$size} {
+    padding: var(--space-#{$size});
+  }
+}

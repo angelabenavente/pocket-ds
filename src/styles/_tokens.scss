@@ -1,0 +1,53 @@
+@use "primitives" as p;
+
+// Semantic custom properties. Components consume these roles, not raw primitives.
+:root {
+  --color-text-default: #{p.$color-neutral-900};
+  --color-text-on-emphasis: #{p.$color-foundation-white};
+  --color-surface-emphasis: #{p.$color-neutral-900};
+  --color-border-default: #{p.$color-border-subtle};
+  --color-border-muted: #{p.$color-border-muted};
+  --color-surface-muted: #{p.$color-surface-muted};
+  --color-focus-ring: #{p.$color-foundation-black};
+
+  --space-4xs: #{p.$space-4xs};
+  --space-3xs: #{p.$space-3xs};
+  --space-2xs: #{p.$space-2xs};
+  --space-xs: #{p.$space-xs};
+  --space-s: #{p.$space-s};
+  --space-m: #{p.$space-m};
+  --space-l: #{p.$space-l};
+  --space-xl: #{p.$space-xl};
+  --space-2xl: #{p.$space-2xl};
+
+  --font-family-body: #{p.$font-stack-body};
+  --font-family-monospace: #{p.$font-stack-monospace};
+
+  --font-size-body-m: #{p.$font-size-body-m};
+  --font-weight-body-m: #{p.$font-weight-regular};
+  --line-height-body-m: #{p.$line-height-body};
+  --letter-spacing-body-m: #{p.$letter-spacing-body};
+
+  --font-size-body-s: #{p.$font-size-body-s};
+  --font-weight-body-s: #{p.$font-weight-regular};
+  --line-height-body-s: #{p.$line-height-body};
+  --letter-spacing-body-s: #{p.$letter-spacing-body};
+
+  --font-weight-emphasis: #{p.$font-weight-emphasis};
+
+  --font-family-button: var(--font-family-body);
+  --font-size-button-m: var(--font-size-body-m);
+  --font-size-button-s: var(--font-size-body-s);
+  --font-weight-button: var(--font-weight-emphasis);
+  --line-height-button-m: var(--line-height-body-m);
+  --line-height-button-s: var(--line-height-body-s);
+  --letter-spacing-button: var(--letter-spacing-body-m);
+
+  --font-family-custom: #{p.$font-stack-custom};
+  --font-size-heading-m: #{p.$font-size-heading-m};
+  --font-size-heading-s: #{p.$font-size-heading-s};
+  --font-weight-heading: var(--font-weight-emphasis);
+  --line-height-heading-m: #{p.$line-height-heading-m};
+  --line-height-heading-s: #{p.$line-height-heading-s};
+  --letter-spacing-heading: var(--letter-spacing-body-m);
+}
