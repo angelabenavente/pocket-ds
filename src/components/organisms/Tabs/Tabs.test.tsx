@@ -181,6 +181,77 @@ describe("Tabs", () => {
     );
   });
 
+  describe("horizontal overflow", () => {
+    function mockViewport(isMobile: boolean) {
+      vi.stubGlobal("matchMedia", (query: string) => ({
+        matches: query === "(max-width: 768px)" ? isMobile : false,
+        media: query,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+      }));
+    }
+
+    function mockTabRect(
+      tab: HTMLElement,
+      list: HTMLElement,
+      tabRect: { left: number; right: number },
+    ) {
+      vi.spyOn(list, "getBoundingClientRect").mockReturnValue(new DOMRect(0, 0, 100, 42));
+      vi.spyOn(tab, "getBoundingClientRect").mockReturnValue(
+        new DOMRect(tabRect.left, 0, tabRect.right - tabRect.left, 42),
+      );
+    }
+
+    it("scrolls a clipped tab fully into view on mobile", async () => {
+      const user = userEvent.setup();
+      mockViewport(true);
+      render(<UncontrolledTabs />);
+
+      const list = screen.getByRole("tablist");
+      const settingsTab = screen.getByRole("tab", { name: "Settings" });
+      const scrollBy = vi.fn();
+      list.scrollBy = scrollBy;
+      mockTabRect(settingsTab, list, { left: 70, right: 150 });
+
+      await user.click(settingsTab);
+
+      expect(scrollBy).toHaveBeenCalledWith({ left: 50, behavior: "smooth" });
+    });
+
+    it("does not scroll a tab that is already fully visible", async () => {
+      const user = userEvent.setup();
+      mockViewport(true);
+      render(<UncontrolledTabs />);
+
+      const list = screen.getByRole("tablist");
+      const settingsTab = screen.getByRole("tab", { name: "Settings" });
+      const scrollBy = vi.fn();
+      list.scrollBy = scrollBy;
+      mockTabRect(settingsTab, list, { left: 10, right: 80 });
+
+      await user.click(settingsTab);
+
+      expect(scrollBy).not.toHaveBeenCalled();
+    });
+
+    it("does not scroll a clipped tab above mobile", async () => {
+      const user = userEvent.setup();
+      mockViewport(false);
+      render(<UncontrolledTabs />);
+
+      const list = screen.getByRole("tablist");
+      const settingsTab = screen.getByRole("tab", { name: "Settings" });
+      const scrollBy = vi.fn();
+      list.scrollBy = scrollBy;
+      mockTabRect(settingsTab, list, { left: 70, right: 150 });
+
+      await user.click(settingsTab);
+
+      expect(scrollBy).not.toHaveBeenCalled();
+    });
+  });
+
   describe("multiple instances", () => {
     it("generates unique tab and panel IDs for multiple instances", () => {
       render(

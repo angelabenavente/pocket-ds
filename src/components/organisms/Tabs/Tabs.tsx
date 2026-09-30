@@ -3,6 +3,7 @@ import {
   Children,
   createContext,
   isValidElement,
+  type MouseEventHandler,
   type ReactElement,
   type KeyboardEvent as ReactKeyboardEvent,
   useContext,
@@ -116,10 +117,18 @@ function TabsList(props: TabsListProps) {
 }
 
 function TabsTrigger(props: Omit<TabsTabProps, "children"> & { index: number }) {
-  const { index, ...tabProps } = props;
+  const { index, onClick, ...tabProps } = props;
   const { activeValue, baseId, selectValue, variant } = useTabsContext("Tabs.Tab");
   const valueId = toIdPart(index);
   const isSelected = activeValue === index;
+
+  const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
+    onClick?.(event);
+
+    if (!event.defaultPrevented) {
+      revealClippedTab(event.currentTarget);
+    }
+  };
 
   return (
     <TabTrigger
@@ -127,6 +136,7 @@ function TabsTrigger(props: Omit<TabsTabProps, "children"> & { index: number }) 
       id={`${baseId}-tab-${valueId}`}
       aria-controls={`${baseId}-panel-${valueId}`}
       isSelected={isSelected}
+      onClick={handleClick}
       onSelect={() => selectValue(index)}
       tabIndex={isSelected ? 0 : -1}
       variant={variant}
@@ -169,6 +179,37 @@ function useTabsContext(componentName: string) {
 
 function toIdPart(index: number) {
   return String(index);
+}
+
+const mobileMediaQuery = "(max-width: 768px)";
+
+function revealClippedTab(tab: HTMLElement) {
+  if (!window.matchMedia?.(mobileMediaQuery)?.matches) {
+    return;
+  }
+
+  const list = tab.closest<HTMLElement>('[role="tablist"]');
+
+  if (!list) {
+    return;
+  }
+
+  const listRect = list.getBoundingClientRect();
+  const tabRect = tab.getBoundingClientRect();
+  const hiddenStart = listRect.left - tabRect.left;
+  const hiddenEnd = tabRect.right - listRect.right;
+
+  if (hiddenStart <= 1 && hiddenEnd <= 1) {
+    return;
+  }
+
+  const delta = hiddenEnd > 1 && hiddenStart <= 1 ? hiddenEnd : -hiddenStart;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  list.scrollBy({
+    left: delta,
+    behavior: reduceMotion ? "auto" : "smooth",
+  });
 }
 
 function getNextTabIndex(key: string, currentIndex: number, tabCount: number) {
