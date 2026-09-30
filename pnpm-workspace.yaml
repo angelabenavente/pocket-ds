@@ -8,4 +8,5 @@ overrides:
   flatted: '>=3.4.2'
   js-yaml: '>=5.4.1'
   minimatch: '>=3.1.4'
+  brace-expansion: '>=5.0.12'
   '@babel/runtime@<7.26.10': '7.26.10'
