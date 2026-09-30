@@ -1,3 +1,4 @@
+export type { TabVariant as TabsVariant } from "./molecules/Tab";
 export {
   Tabs,
   TabsList,

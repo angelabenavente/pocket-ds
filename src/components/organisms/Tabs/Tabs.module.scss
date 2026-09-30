@@ -1,0 +1,32 @@
+@use "../../../styles/breakpoints" as bkp;
+
+.tabs {
+  width: 100%;
+
+  &__list {
+    border-bottom: 1px solid var(--color-border-default);
+    display: flex;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  &__panel {
+    padding-top: var(--space-s);
+  }
+
+  &[data-variant="pill"] {
+    .tabs__list {
+      border-bottom: 0;
+      gap: var(--space-2xs);
+    }
+  }
+}
+
+@include bkp.above-mobile {
+  .tabs[data-variant="pill"] {
+    .tabs__list {
+      gap: var(--space-xs);
+    }
+  }
+}

@@ -1,10 +1,11 @@
 import type { ComponentPropsWithoutRef, HTMLAttributes, ReactNode } from "react";
-import type { TabTrigger } from "../../molecules/Tab";
+import type { TabTrigger, TabVariant } from "../../molecules/Tab";
 
 export interface TabsContextValue {
   activeValue: string;
   baseId: string;
   selectValue: (value: string) => void;
+  variant: TabVariant;
 }
 
 interface ControlledTabsRootProps {
@@ -21,7 +22,10 @@ interface UncontrolledTabsRootProps {
 
 type TabsRootStateProps = ControlledTabsRootProps | UncontrolledTabsRootProps;
 
-export type TabsRootProps = Omit<HTMLAttributes<HTMLDivElement>, "onChange"> & TabsRootStateProps;
+export type TabsRootProps = Omit<HTMLAttributes<HTMLDivElement>, "onChange"> &
+  TabsRootStateProps & {
+    variant?: TabVariant;
+  };
 
 interface LabelledBy {
   "aria-label"?: never;
@@ -33,13 +37,23 @@ interface Labelled {
   "aria-labelledby"?: never;
 }
 
-export type TabsListProps = Omit<HTMLAttributes<HTMLDivElement>, "aria-label" | "aria-labelledby"> &
+export type TabsListProps = Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "aria-label" | "aria-labelledby" | "aria-orientation" | "role"
+> &
   (Labelled | LabelledBy);
 
 export interface TabsTabProps
   extends Omit<
     ComponentPropsWithoutRef<typeof TabTrigger>,
-    "aria-controls" | "aria-selected" | "id" | "isSelected" | "onSelect" | "role" | "tabIndex"
+    | "aria-controls"
+    | "aria-selected"
+    | "id"
+    | "isSelected"
+    | "onSelect"
+    | "role"
+    | "tabIndex"
+    | "variant"
   > {
   value: string;
 }

@@ -1,3 +1,4 @@
+import cn from "classnames";
 import {
   createContext,
   type KeyboardEvent as ReactKeyboardEvent,
@@ -7,6 +8,7 @@ import {
   useState,
 } from "react";
 import { TabTrigger } from "../../molecules/Tab";
+import styles from "./Tabs.module.scss";
 import type {
   TabsContextValue,
   TabsListProps,
@@ -18,7 +20,15 @@ import type {
 const TabsContext = createContext<TabsContextValue | null>(null);
 
 export function TabsRoot(props: TabsRootProps) {
-  const { children, defaultValue, onValueChange, value, ...rootProps } = props;
+  const {
+    children,
+    className,
+    defaultValue,
+    onValueChange,
+    value,
+    variant = "underline",
+    ...rootProps
+  } = props;
   const generatedId = useId();
   const [internalValue, setInternalValue] = useState(() => defaultValue ?? value ?? "");
   const isControlled = value !== undefined;
@@ -29,6 +39,7 @@ export function TabsRoot(props: TabsRootProps) {
     () => ({
       activeValue,
       baseId,
+      variant,
       selectValue(nextValue) {
         if (nextValue === activeValue) {
           return;
@@ -41,18 +52,20 @@ export function TabsRoot(props: TabsRootProps) {
         onValueChange?.(nextValue);
       },
     }),
-    [activeValue, baseId, isControlled, onValueChange],
+    [activeValue, baseId, isControlled, onValueChange, variant],
   );
 
   return (
     <TabsContext.Provider value={contextValue}>
-      <div {...rootProps}>{children}</div>
+      <div {...rootProps} className={cn(styles.tabs, className)} data-variant={variant}>
+        {children}
+      </div>
     </TabsContext.Provider>
   );
 }
 
 export function TabsList(props: TabsListProps) {
-  const { onKeyDown, ...listProps } = props;
+  const { className, onKeyDown, ...listProps } = props;
 
   const handleKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
     onKeyDown?.(event);
@@ -83,13 +96,19 @@ export function TabsList(props: TabsListProps) {
   };
 
   return (
-    <div {...listProps} role="tablist" aria-orientation="horizontal" onKeyDown={handleKeyDown} />
+    <div
+      {...listProps}
+      role="tablist"
+      aria-orientation="horizontal"
+      className={cn(styles.tabs__list, className)}
+      onKeyDown={handleKeyDown}
+    />
   );
 }
 
 export function TabsTab(props: TabsTabProps) {
   const { value, ...tabProps } = props;
-  const { activeValue, baseId, selectValue } = useTabsContext("Tabs.Tab");
+  const { activeValue, baseId, selectValue, variant } = useTabsContext("Tabs.Tab");
   const valueId = toIdPart(value);
   const isSelected = activeValue === value;
 
@@ -101,12 +120,13 @@ export function TabsTab(props: TabsTabProps) {
       isSelected={isSelected}
       onSelect={() => selectValue(value)}
       tabIndex={isSelected ? 0 : -1}
+      variant={variant}
     />
   );
 }
 
 export function TabsPanel(props: TabsPanelProps) {
-  const { value, ...panelProps } = props;
+  const { className, value, ...panelProps } = props;
   const { activeValue, baseId } = useTabsContext("Tabs.Panel");
   const valueId = toIdPart(value);
 
@@ -116,6 +136,7 @@ export function TabsPanel(props: TabsPanelProps) {
       id={`${baseId}-panel-${valueId}`}
       role="tabpanel"
       aria-labelledby={`${baseId}-tab-${valueId}`}
+      className={cn(styles.tabs__panel, className)}
       hidden={activeValue !== value}
     />
   );
