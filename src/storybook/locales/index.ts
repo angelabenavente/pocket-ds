@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import { addons } from "storybook/preview-api";
 import enComponents from "./en-GB/components.json";
 import enFoundations from "./en-GB/foundations.json";
+import enGuide from "./en-GB/guide.json";
 import esComponents from "./es-ES/components.json";
 import esFoundations from "./es-ES/foundations.json";
+import esGuide from "./es-ES/guide.json";
 import itComponents from "./it-IT/components.json";
 import itFoundations from "./it-IT/foundations.json";
+import itGuide from "./it-IT/guide.json";
 
 export const locales = [
   { value: "en-GB", title: "Locale: en-GB", right: "🇬🇧" },
@@ -17,25 +20,33 @@ export type Locale = (typeof locales)[number]["value"];
 
 export const defaultLocale: Locale = "en-GB";
 
-type MessageTree<T> = T extends string ? string : { [Key in keyof T]: MessageTree<T[Key]> };
+type MessageTree<T> = T extends string
+  ? string
+  : T extends readonly (infer Item)[]
+    ? MessageTree<Item>[]
+    : { [Key in keyof T]: MessageTree<T[Key]> };
 
 export type StoryCopy = {
   components: MessageTree<typeof enComponents>;
   foundations: MessageTree<typeof enFoundations>;
+  guide: MessageTree<typeof enGuide>;
 };
 
 const storyCopy: Record<Locale, StoryCopy> = {
   "en-GB": {
     components: enComponents,
     foundations: enFoundations,
+    guide: enGuide,
   },
   "es-ES": {
     components: esComponents,
     foundations: esFoundations,
+    guide: esGuide,
   },
   "it-IT": {
     components: itComponents,
     foundations: itFoundations,
+    guide: itGuide,
   },
 };
 

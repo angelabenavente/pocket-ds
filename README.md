@@ -1,12 +1,6 @@
-# Frontend Interview - Design System
+# Pocket DS
 
-Hey 👋
-
-This is the base repository for the home test. The repository is created with `vite` and is empty, but contains some packages already installed, in particular:
-
-- `react`
-- `storybook`
-- `vitest`
+Accessible Tabs, Badge, and Text components, with shared tokens and Storybook docs.
 
 ## Install and run
 
@@ -19,6 +13,24 @@ pnpm storybook
 ```
 
 Storybook listens on http://localhost:6006/. Run `pnpm storybook`, not `pnpm run storybook dev`.
+
+## Use the package
+
+The public components are `Tabs`, `Badge`, and `Text`. Install the package with React, React DOM, and Sass, and load Inter at weights 400 and 700.
+
+```bash
+pnpm add pocket-ds react react-dom sass
+pnpm add @fontsource/inter
+```
+
+```tsx
+import "@fontsource/inter/latin-400.css";
+import "@fontsource/inter/latin-700.css";
+import "pocket-ds/styles";
+import { Badge, Tabs, Text } from "pocket-ds";
+```
+
+`Tabs` variants are `underline` and `pill`. Alignment is `left`, `center`, or `right`. A tab can be selected, disabled, or hovered. Hover and active are CSS states. `Badge` variants are `neutral`, `positive`, and `negative`. `Text` variants are `body-m`, `body-s`, `heading-m`, `heading-s`, `button-m`, and `button-s`. The Storybook introduction shows the install steps, the published version, and the version deployed on the site.
 
 ## Quality checks
 
@@ -37,7 +49,7 @@ pnpm run licenses      # license summary
 pnpm run licenses:unknown
 ```
 
-There are no component tests yet. `pnpm test` exits with an error until the first `src/**/*.test.*` file exists. CI and `pnpm run quality` skip Vitest until then via `scripts/run-tests-if-present.sh`.
+`pnpm test` runs the Vitest suites for Badge, Tabs, and Text.
 
 ## Pre-commit hook
 

@@ -1,0 +1,17 @@
+.snippet {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.snippet + .snippet {
+  padding-top: var(--space-m);
+}
+
+.step {
+  font-weight: var(--font-weight-emphasis);
+}
+
+.packageImports {
+  padding-bottom: var(--space-l);
+}

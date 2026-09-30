@@ -37,7 +37,7 @@ const preview: Preview = {
     layout: "padded",
     options: {
       storySort: {
-        order: ["Foundations", "Introduction", "Components", "*"],
+        order: ["Introduction", "Changelog", "Foundations", "Components", "*"],
       },
     },
     viewport: {

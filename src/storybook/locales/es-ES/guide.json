@@ -1,0 +1,100 @@
+{
+  "introduction": {
+    "title": "Pocket DS, un sistema de diseño pequeño",
+    "intro": "Instala pocket-ds, las dependencias que exige y la fuente Inter. Importa la hoja de estilos de los fundamentos antes que los componentes.",
+    "contentsTitle": "Índice",
+    "installTitle": "Cómo instalarlo",
+    "installCommand": "Instala la librería y sus dependencias de npm.",
+    "fontImports": "Importa las fuentes en tu archivo de estilos.",
+    "packageImports": "Importa la librería y comienza a usar sus componentes.",
+    "toolsTitle": "Herramientas",
+    "toolsIntro": "Lo que hay debajo de pocket-ds, además de los componentes.",
+    "tools": [
+      {
+        "name": "React y React DOM",
+        "detail": "Los componentes son React a pelo, sin una librería de componentes debajo."
+      },
+      {
+        "name": "Sass",
+        "detail": "Compila los tokens, la hoja de estilos de los fundamentos y los CSS modules."
+      },
+      {
+        "name": "classnames",
+        "detail": "Compone las clases dentro de los componentes."
+      },
+      {
+        "name": "Vite",
+        "detail": "Sirve la app en desarrollo y construye Storybook."
+      },
+      {
+        "name": "Storybook",
+        "detail": "Pinta esta documentación, con los addons de docs y de accesibilidad."
+      },
+      {
+        "name": "axe-core",
+        "detail": "Hace las comprobaciones de accesibilidad de cada story."
+      },
+      {
+        "name": "Vitest y Testing Library",
+        "detail": "Ejecutan los tests unitarios."
+      },
+      {
+        "name": "TypeScript",
+        "detail": "Tipa los componentes públicos."
+      },
+      {
+        "name": "Biome",
+        "detail": "Revisa el lint y el formato del código."
+      },
+      {
+        "name": "pnpm",
+        "detail": "Instala las dependencias. El proyecto usa Node 24."
+      },
+      {
+        "name": "Husky",
+        "detail": "El hook de git que lanza Biome, TypeScript y Vitest antes de cada commit."
+      },
+      {
+        "name": "GitHub Actions",
+        "detail": "Ejecuta lint, tipos, tests, la build de Storybook, la auditoría y la revisión de licencias."
+      },
+      {
+        "name": "Vercel",
+        "detail": "Aloja esta web de documentación."
+      },
+      {
+        "name": "Inter",
+        "detail": "La tipografía, cargada con @fontsource/inter."
+      }
+    ],
+    "dependencies": "React, React DOM y Sass son obligatorias. Inter es la tipografía de los tokens. El paquete no incluye los archivos de la fuente, así que hay que cargar los pesos 400 y 700. @fontsource/inter sirve para eso.",
+    "publishedTitle": "Última versión publicada",
+    "published": "Es la versión que está en npm.",
+    "deployedTitle": "Versión desplegada en esta web",
+    "deployed": "Es la versión de la documentación que estás leyendo.",
+    "changelog": "Ver el registro de cambios",
+    "creditBefore": "Hecho por ",
+    "creditName": "Angela",
+    "creditAfter": " con <3"
+  },
+  "changelog": {
+    "title": "Registro de cambios",
+    "releases": [
+      {
+        "version": "0.1.0",
+        "date": "30 de septiembre de 2026",
+        "added": "Añadido",
+        "items": [
+          "Fundamentos de color, tipografía, espaciado y breakpoints, con tokens semánticos sobre los primitivos de Sass.",
+          "Badge, Tab, Tabs y Text.",
+          "Documentación en Storybook, con idiomas y viewports alineados con los breakpoints.",
+          "Comprobaciones automáticas de accesibilidad en Storybook.",
+          "Tests unitarios de Badge, Tabs y Text.",
+          "Integración continua para lint, formato, tipos, tests, la build de Storybook, la auditoría de dependencias y las licencias.",
+          "Entrada pública del paquete para los componentes y la hoja de estilos de los fundamentos.",
+          "Esta guía y el alojamiento en Vercel, con una política de seguridad de contenido."
+        ]
+      }
+    ]
+  }
+}
