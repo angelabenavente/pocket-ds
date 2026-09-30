@@ -10,17 +10,54 @@ This is the base repository for the home test. The repository is created with `v
 
 ## Install and run
 
+Requires Node.js 24 or newer (`see .nvmrc`). Use `nvm use` in the project root when available.
+
 ```bash
-# Install dependencies
-# This project use `pnpm` as package manager, but you can use also `npm` or `yarn`.
 pnpm install
-
-# And run the project
 pnpm dev
-
-# Optional: Run Storybook
 pnpm storybook
 ```
+
+Storybook listens on http://localhost:6006/. Run `pnpm storybook`, not `pnpm run storybook dev`.
+
+## Quality checks
+
+Biome handles lint and format checks. There is no Prettier config in this repo.
+
+```bash
+pnpm run lint          # Biome lint, check mode
+pnpm run format:check  # Biome format, check mode
+pnpm run check         # lint + format together
+pnpm run typecheck     # TypeScript project references
+pnpm test              # Vitest, non-interactive (no test files yet)
+pnpm run build-storybook
+pnpm run quality       # lint, format, types, tests-if-present, Storybook build
+pnpm run audit         # pnpm audit
+pnpm run licenses      # license summary
+pnpm run licenses:unknown
+```
+
+There are no component tests yet. `pnpm test` exits with an error until the first `src/**/*.test.*` file exists. CI and `pnpm run quality` skip Vitest until then via `scripts/run-tests-if-present.sh`.
+
+## Pre-commit hook
+
+After `pnpm install`, Husky registers `.husky/pre-commit`. The hook runs `scripts/pre-commit-check.sh`, which:
+
+- runs Biome check on staged files that Biome supports (no auto-fix, no staging)
+- runs the full TypeScript build (`tsc -b`)
+- skips Vitest while no test files exist
+
+Invoke the hook logic without committing:
+
+```bash
+pnpm run precommit
+```
+
+Dependency audit and license inventory run in CI, not in the pre-commit hook.
+
+## Continuous integration
+
+GitHub Actions workflow: `.github/workflows/ci.yml`. It installs from `pnpm-lock.yaml` with Node 24, then runs lint, format check, typecheck, conditional tests, Storybook build, `pnpm audit`, and license inventory checks.
 
 ## Figma file
 
