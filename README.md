@@ -57,7 +57,7 @@ Dependency audit and license inventory run in CI, not in the pre-commit hook.
 
 ## Continuous integration
 
-GitHub Actions workflow: `.github/workflows/ci.yml`. It installs from `pnpm-lock.yaml` with Node 24, then runs lint, format check, typecheck, conditional tests, Storybook build, `pnpm audit`, and license inventory checks.
+GitHub Actions workflow: `.github/workflows/ci.yml`. Separate jobs: **Run lint checks**, **Check code formatting**, **Check TypeScript types**, **Run unit tests**, **Build Storybook**, **Audit dependencies**, **Generate license inventory**, and **Check for unknown licenses**. Each installs from `pnpm-lock.yaml` with Node 24 and runs one check.
 
 ## Figma file
 
