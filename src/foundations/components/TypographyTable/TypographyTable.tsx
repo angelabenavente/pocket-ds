@@ -4,7 +4,7 @@ import styles from "./TypographyTable.module.scss";
 import type { TypographyTableProps } from "./types";
 
 export function TypographyTable(props: TypographyTableProps) {
-  const { rows } = props;
+  const { labels, rows } = props;
 
   return (
     <div className={foundationStyles.foundationTable__wrapper}>
@@ -18,14 +18,14 @@ export function TypographyTable(props: TypographyTableProps) {
       >
         <thead>
           <tr>
-            <th scope="col">Type</th>
-            <th scope="col">Description</th>
-            <th scope="col">Font family</th>
-            <th scope="col">Font family backups</th>
-            <th scope="col">Font size</th>
-            <th scope="col">Line height</th>
-            <th scope="col">Font weight</th>
-            <th scope="col">Design token</th>
+            <th scope="col">{labels.type}</th>
+            <th scope="col">{labels.description}</th>
+            <th scope="col">{labels.fontFamily}</th>
+            <th scope="col">{labels.fontFamilyBackups}</th>
+            <th scope="col">{labels.fontSize}</th>
+            <th scope="col">{labels.lineHeight}</th>
+            <th scope="col">{labels.fontWeight}</th>
+            <th scope="col">{labels.token}</th>
           </tr>
         </thead>
         <tbody>

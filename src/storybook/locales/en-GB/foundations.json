@@ -1,0 +1,121 @@
+{
+  "colors": {
+    "title": "Colors",
+    "intro": "The color system separates component-facing semantic tokens from the Sass primitives that provide their values.",
+    "semanticTitle": "Semantic tokens",
+    "semanticIntro": "Components should consume these CSS custom properties through var(--token) instead of using primitive values directly.",
+    "semanticCaption": "Semantic color tokens",
+    "reservedTitle": "Reserved primitives",
+    "reservedIntro": "Official values in src/styles/_primitives.scss for upcoming Tabs, Badge, and state styles. Not published as CSS custom properties yet.",
+    "reservedCaption": "Reserved primitive colors",
+    "columns": {
+      "name": "Name",
+      "token": "Token",
+      "source": "Source / alias",
+      "value": "Value",
+      "preview": "Preview",
+      "usage": "Usage"
+    },
+    "items": {
+      "--color-text-default": {
+        "title": "Text default",
+        "description": "Default color for text and icons."
+      },
+      "--color-text-on-emphasis": {
+        "title": "Text on emphasis",
+        "description": "Text and icons placed on emphasized surfaces."
+      },
+      "--color-surface-emphasis": {
+        "title": "Surface emphasis",
+        "description": "Selected tab and other emphasized surfaces."
+      },
+      "--color-surface-positive": {
+        "title": "Surface positive",
+        "description": "Positive badge background."
+      },
+      "--color-surface-negative": {
+        "title": "Surface negative",
+        "description": "Negative badge background."
+      },
+      "--color-border-default": {
+        "title": "Border default",
+        "description": "Default borders and dividers."
+      },
+      "--color-focus-ring": {
+        "title": "Focus ring",
+        "description": "Visible keyboard focus indicator."
+      },
+      "$color-border-muted": {
+        "title": "Border muted",
+        "description": "Hover and active borders, including tab underlines."
+      },
+      "$color-surface-subtle": {
+        "title": "Surface subtle",
+        "description": "Subtle hover background for pill controls."
+      },
+      "$color-surface-muted": {
+        "title": "Surface muted",
+        "description": "Neutral badges and active pill backgrounds."
+      },
+      "$color-neutral-800": {
+        "title": "Neutral 800",
+        "description": "Selected pill hover state."
+      },
+      "$color-neutral-700": {
+        "title": "Neutral 700",
+        "description": "Selected pill active state."
+      }
+    }
+  },
+  "typography": {
+    "title": "Typography",
+    "intro": "Typography styles provide consistent hierarchy and rhythm across interface content.",
+    "usage": "Heading is used for page and section titles. Body is used for regular text. Button is used for clickable nodes, including tabs.",
+    "presets": "The Sass presets are heading-m, heading-s, body-m, body-s, button-m, and button-s. CircularXX is used for headings and Inter for body and button styles; both include system fallbacks until font delivery is added.",
+    "bold": "Bold",
+    "regular": "Regular",
+    "columns": {
+      "type": "Type",
+      "description": "Description",
+      "fontFamily": "Font family",
+      "fontFamilyBackups": "Font family backups",
+      "fontSize": "Font size",
+      "lineHeight": "Line height",
+      "fontWeight": "Font weight",
+      "token": "Design token"
+    },
+    "styles": {
+      "heading-m": "Invented for Storybook documentation page headings; not part of the official specification.",
+      "heading-s": "Invented for Storybook documentation section headings; not part of the official specification.",
+      "body-m": "Default text for paragraphs and interface content.",
+      "body-s": "Secondary text for compact interfaces.",
+      "button-m": "Interactive labels, including tabs.",
+      "button-s": "Compact interactive labels."
+    }
+  },
+  "spacing": {
+    "title": "Spacing",
+    "intro": "Official scale from the Spacings board (4XS through 2XL).",
+    "note": "Only a subset is exposed in :root today. Add a token when a second component needs the same spacing role.",
+    "primitiveOnly": "primitive only",
+    "columns": {
+      "name": "Name",
+      "scale": "Scale",
+      "value": "Value",
+      "token": "CSS custom property"
+    }
+  },
+  "breakpoints": {
+    "title": "Breakpoints",
+    "intro": "Official viewport switch from the Components board.",
+    "variable": "Variable",
+    "inFile": "in",
+    "upcoming": "Tab heights, padding, and gaps per variant will use these breakpoints when component styles are implemented.",
+    "columns": {
+      "figma": "Figma",
+      "viewport": "Viewport",
+      "sass": "Sass"
+    },
+    "baseStyles": "Base styles (no media query)"
+  }
+}

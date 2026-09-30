@@ -4,7 +4,7 @@ import styles from "./ColorTable.module.scss";
 import type { ColorTableProps } from "./types";
 
 export function ColorTable(props: ColorTableProps) {
-  const { caption, rows } = props;
+  const { caption, labels, rows } = props;
 
   return (
     <div className={foundationStyles.foundationTable__wrapper}>
@@ -19,12 +19,12 @@ export function ColorTable(props: ColorTableProps) {
         <caption className={styles.colorTable__caption}>{caption}</caption>
         <thead>
           <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Token</th>
-            <th scope="col">Source / alias</th>
-            <th scope="col">Value</th>
-            <th scope="col">Preview</th>
-            <th scope="col">Usage</th>
+            <th scope="col">{labels.name}</th>
+            <th scope="col">{labels.token}</th>
+            <th scope="col">{labels.source}</th>
+            <th scope="col">{labels.value}</th>
+            <th scope="col">{labels.preview}</th>
+            <th scope="col">{labels.usage}</th>
           </tr>
         </thead>
         <tbody>

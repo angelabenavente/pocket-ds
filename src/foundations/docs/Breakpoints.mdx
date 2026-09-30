@@ -1,39 +1,9 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import { FoundationsPage } from '../components/FoundationsPage';
-import { TokenTable } from '../components/TokenTable';
-import { breakpointRows, breakpoints } from '../data/foundations.data';
+import { BreakpointsDocs } from './FoundationsDocs';
 
 <Meta parameters={{ docs: { toc: false } }} title="Foundations/Breakpoints" />
 
 <FoundationsPage>
-
-# Breakpoints
-
-Official viewport switch from the Components board.
-
-<TokenTable
-  columns={[
-    { header: 'Figma', accessor: 'figma' },
-    { header: 'Viewport', accessor: 'viewport' },
-    { header: 'Sass', accessor: 'sass', mono: true },
-  ]}
-  rows={breakpointRows}
-/>
-
-Variable: `$mobile-max` = **{breakpoints.mobileMax}** in `src/styles/_breakpoints.scss`.
-
-```scss
-@use "../../styles/breakpoints" as bkp;
-
-.example {
-  padding: var(--space-2xs);
-
-  @include bkp.above-mobile {
-    padding: var(--space-xs);
-  }
-}
-```
-
-Tab heights, padding, and gaps per variant will use these breakpoints when component styles are implemented.
-
+  <BreakpointsDocs />
 </FoundationsPage>

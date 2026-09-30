@@ -1,21 +1,27 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { type StoryCopy, useStoryCopy } from "../../../storybook/locales";
 import type { TabVariant } from "../../molecules/Tab";
 import { Tabs } from "./Tabs";
 import styles from "./Tabs.stories.module.scss";
 
 interface TabsDemoProps {
   defaultValue: string;
-  label: string;
+  label: keyof Pick<
+    StoryCopy["components"],
+    "accountSections" | "inboxSections" | "primarySections" | "secondarySections"
+  >;
   variant: TabVariant;
   withBadges?: boolean;
 }
 
 function TabsDemo(props: TabsDemoProps) {
   const { defaultValue, label, variant, withBadges = false } = props;
+  const copy = useStoryCopy().components;
+  const sectionLabel = copy[label];
 
   return (
     <Tabs.Root defaultValue={defaultValue} variant={variant}>
-      <Tabs.List aria-label={label}>
+      <Tabs.List aria-label={sectionLabel}>
         <Tabs.Tab
           value="overview"
           badge={
@@ -23,12 +29,12 @@ function TabsDemo(props: TabsDemoProps) {
               ? {
                   content: "3",
                   variant: "neutral",
-                  "aria-label": "3 overview notifications",
+                  "aria-label": copy.overviewNotifications,
                 }
               : undefined
           }
         >
-          Overview
+          {copy.overview}
         </Tabs.Tab>
         <Tabs.Tab
           value="activity"
@@ -37,22 +43,30 @@ function TabsDemo(props: TabsDemoProps) {
               ? {
                   content: "12",
                   variant: "positive",
-                  "aria-label": "12 positive activity updates",
+                  "aria-label": copy.activityUpdates,
                 }
               : undefined
           }
         >
-          Activity
+          {copy.activity}
         </Tabs.Tab>
-        <Tabs.Tab value="settings">Settings</Tabs.Tab>
+        <Tabs.Tab value="settings">{copy.settings}</Tabs.Tab>
         <Tabs.Tab value="disabled" disabled>
-          Disabled
+          {copy.disabled}
         </Tabs.Tab>
       </Tabs.List>
-      <Tabs.Panel value="overview">{label}: overview content</Tabs.Panel>
-      <Tabs.Panel value="activity">{label}: activity content</Tabs.Panel>
-      <Tabs.Panel value="settings">{label}: settings content</Tabs.Panel>
-      <Tabs.Panel value="disabled">{label}: disabled content</Tabs.Panel>
+      <Tabs.Panel value="overview">
+        {sectionLabel}: {copy.overviewContent}
+      </Tabs.Panel>
+      <Tabs.Panel value="activity">
+        {sectionLabel}: {copy.activityContent}
+      </Tabs.Panel>
+      <Tabs.Panel value="settings">
+        {sectionLabel}: {copy.settingsContent}
+      </Tabs.Panel>
+      <Tabs.Panel value="disabled">
+        {sectionLabel}: {copy.disabledContent}
+      </Tabs.Panel>
     </Tabs.Root>
   );
 }
@@ -95,7 +109,7 @@ export const Underline: Story = {
     <div className={styles.tabsStory}>
       <TabsDemo
         defaultValue={args.defaultValue ?? "overview"}
-        label="Account sections"
+        label="accountSections"
         variant={args.variant ?? "underline"}
       />
     </div>
@@ -115,7 +129,7 @@ export const WithBadges: Story = {
     <div className={styles.tabsStory}>
       <TabsDemo
         defaultValue={args.defaultValue ?? "overview"}
-        label="Inbox sections"
+        label="inboxSections"
         variant={args.variant ?? "underline"}
         withBadges
       />
@@ -126,8 +140,8 @@ export const WithBadges: Story = {
 export const MultipleInstances: Story = {
   render: () => (
     <div className={styles.tabsStory__instances}>
-      <TabsDemo defaultValue="overview" label="Primary sections" variant="underline" />
-      <TabsDemo defaultValue="activity" label="Secondary sections" variant="pill" />
+      <TabsDemo defaultValue="overview" label="primarySections" variant="underline" />
+      <TabsDemo defaultValue="activity" label="secondarySections" variant="pill" />
     </div>
   ),
   parameters: {

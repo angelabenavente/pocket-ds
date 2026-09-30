@@ -4,7 +4,7 @@ import styles from "./SpacingTable.module.scss";
 import type { SpacingTableProps } from "./types";
 
 export function SpacingTable(props: SpacingTableProps) {
-  const { items } = props;
+  const { items, labels } = props;
 
   return (
     <div className={foundationStyles.foundationTable__wrapper}>
@@ -12,15 +12,15 @@ export function SpacingTable(props: SpacingTableProps) {
         <thead>
           <tr>
             <th className={styles.spacingTable__nameColumn} scope="col">
-              Name
+              {labels.name}
             </th>
             <th className={styles.spacingTable__scaleColumn} scope="col">
-              Scale
+              {labels.scale}
             </th>
             <th className={styles.spacingTable__valueColumn} scope="col">
-              Value
+              {labels.value}
             </th>
-            <th scope="col">CSS custom property</th>
+            <th scope="col">{labels.token}</th>
           </tr>
         </thead>
         <tbody>
@@ -39,7 +39,7 @@ export function SpacingTable(props: SpacingTableProps) {
               <td className={styles.spacingTable__valueColumn}>{item.value}</td>
               <td>
                 <span className={foundationStyles.foundationTable__tokenPill}>
-                  {item.token ?? "primitive only"}
+                  {item.token ?? labels.primitiveOnly}
                 </span>
               </td>
             </tr>

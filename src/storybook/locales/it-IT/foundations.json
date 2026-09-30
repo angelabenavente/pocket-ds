@@ -1,0 +1,121 @@
+{
+  "colors": {
+    "title": "Colori",
+    "intro": "Il sistema di colori separa i token semantici usati dai componenti dalle primitive Sass che ne forniscono i valori.",
+    "semanticTitle": "Token semantici",
+    "semanticIntro": "I componenti devono consumare queste custom property CSS tramite var(--token), invece di usare direttamente i valori primitivi.",
+    "semanticCaption": "Token di colore semantici",
+    "reservedTitle": "Primitive riservate",
+    "reservedIntro": "Valori ufficiali in src/styles/_primitives.scss per gli stili futuri di Tabs, Badge e stati. Non sono ancora pubblicati come custom property CSS.",
+    "reservedCaption": "Colori primitivi riservati",
+    "columns": {
+      "name": "Nome",
+      "token": "Token",
+      "source": "Sorgente / alias",
+      "value": "Valore",
+      "preview": "Anteprima",
+      "usage": "Uso"
+    },
+    "items": {
+      "--color-text-default": {
+        "title": "Testo predefinito",
+        "description": "Colore predefinito per testo e icone."
+      },
+      "--color-text-on-emphasis": {
+        "title": "Testo su enfasi",
+        "description": "Testo e icone posizionati su superfici enfatizzate."
+      },
+      "--color-surface-emphasis": {
+        "title": "Superficie di enfasi",
+        "description": "Tab selezionato e altre superfici enfatizzate."
+      },
+      "--color-surface-positive": {
+        "title": "Superficie positiva",
+        "description": "Sfondo del badge positivo."
+      },
+      "--color-surface-negative": {
+        "title": "Superficie negativa",
+        "description": "Sfondo del badge negativo."
+      },
+      "--color-border-default": {
+        "title": "Bordo predefinito",
+        "description": "Bordi e divisori predefiniti."
+      },
+      "--color-focus-ring": {
+        "title": "Anello di focus",
+        "description": "Indicatore visibile del focus da tastiera."
+      },
+      "$color-border-muted": {
+        "title": "Bordo attenuato",
+        "description": "Bordi di hover e active, incluse le sottolineature dei tab."
+      },
+      "$color-surface-subtle": {
+        "title": "Superficie sottile",
+        "description": "Sfondo di hover sottile per i controlli pill."
+      },
+      "$color-surface-muted": {
+        "title": "Superficie attenuata",
+        "description": "Badge neutri e sfondi dei pill attivi."
+      },
+      "$color-neutral-800": {
+        "title": "Neutro 800",
+        "description": "Stato hover del pill selezionato."
+      },
+      "$color-neutral-700": {
+        "title": "Neutro 700",
+        "description": "Stato active del pill selezionato."
+      }
+    }
+  },
+  "typography": {
+    "title": "Tipografia",
+    "intro": "Gli stili tipografici danno gerarchia e ritmo coerenti al contenuto dell'interfaccia.",
+    "usage": "Heading si usa per i titoli di pagina e di sezione. Body si usa per il testo normale. Button si usa per gli elementi cliccabili, inclusi i tab.",
+    "presets": "I preset Sass sono heading-m, heading-s, body-m, body-s, button-m e button-s. CircularXX si usa per gli heading e Inter per body e button; entrambi includono fallback di sistema finché non viene aggiunta la distribuzione dei font.",
+    "bold": "Grassetto",
+    "regular": "Regolare",
+    "columns": {
+      "type": "Tipo",
+      "description": "Descrizione",
+      "fontFamily": "Famiglia di font",
+      "fontFamilyBackups": "Fallback della famiglia",
+      "fontSize": "Dimensione del font",
+      "lineHeight": "Interlinea",
+      "fontWeight": "Peso",
+      "token": "Token di design"
+    },
+    "styles": {
+      "heading-m": "Inventato per i titoli di pagina della documentazione Storybook; non fa parte della specifica ufficiale.",
+      "heading-s": "Inventato per i titoli di sezione della documentazione Storybook; non fa parte della specifica ufficiale.",
+      "body-m": "Testo predefinito per paragrafi e contenuto dell'interfaccia.",
+      "body-s": "Testo secondario per interfacce compatte.",
+      "button-m": "Etichette interattive, inclusi i tab.",
+      "button-s": "Etichette interattive compatte."
+    }
+  },
+  "spacing": {
+    "title": "Spaziatura",
+    "intro": "Scala ufficiale della board Spacings (da 4XS a 2XL).",
+    "note": "Oggi solo un sottoinsieme è esposto in :root. Aggiungi un token quando un secondo componente ha bisogno dello stesso ruolo di spaziatura.",
+    "primitiveOnly": "solo primitiva",
+    "columns": {
+      "name": "Nome",
+      "scale": "Scala",
+      "value": "Valore",
+      "token": "Custom property CSS"
+    }
+  },
+  "breakpoints": {
+    "title": "Breakpoint",
+    "intro": "Cambio ufficiale di viewport della board Components.",
+    "variable": "Variabile",
+    "inFile": "in",
+    "upcoming": "Altezze, padding e gap di ogni variante di Tab useranno questi breakpoint quando gli stili del componente saranno implementati.",
+    "columns": {
+      "figma": "Figma",
+      "viewport": "Viewport",
+      "sass": "Sass"
+    },
+    "baseStyles": "Stili di base (senza media query)"
+  }
+}

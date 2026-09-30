@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import cn from "classnames";
+import { useStoryCopy } from "../../../storybook/locales";
 import { TabTrigger } from "./Tab";
 import styles from "./Tab.stories.module.scss";
 import type { TabVariant } from "./types";
@@ -39,11 +40,15 @@ const meta = {
       },
     },
   },
-  render: (args) => (
-    <div role="tablist" aria-label="Tab preview">
-      <TabTrigger {...args} />
-    </div>
-  ),
+  render: (args) => {
+    const copy = useStoryCopy().components;
+
+    return (
+      <div role="tablist" aria-label={copy.tabPreview}>
+        <TabTrigger {...args}>{copy.overview}</TabTrigger>
+      </div>
+    );
+  },
 } satisfies Meta<typeof TabTrigger>;
 
 export default meta;
@@ -59,20 +64,37 @@ export const Selected: Story = {
 };
 
 export const Hover: Story = {
-  render: (args) => (
-    <div role="tablist" aria-label="Hovered tab preview">
-      <TabTrigger {...args} className={cn(args.className, styles.tabStory__forcedHover)} />
-    </div>
-  ),
+  render: (args) => {
+    const copy = useStoryCopy().components;
+
+    return (
+      <div role="tablist" aria-label={copy.hoveredTabPreview}>
+        <TabTrigger {...args} className={cn(args.className, styles.tabStory__forcedHover)}>
+          {copy.overview}
+        </TabTrigger>
+      </div>
+    );
+  },
 };
 
 export const WithBadge: Story = {
-  args: {
-    badge: {
-      content: "3",
-      variant: "neutral",
-      "aria-label": "3 notifications",
-    },
+  render: (args) => {
+    const copy = useStoryCopy().components;
+
+    return (
+      <div role="tablist" aria-label={copy.tabPreview}>
+        <TabTrigger
+          {...args}
+          badge={{
+            content: "3",
+            variant: "neutral",
+            "aria-label": copy.notifications,
+          }}
+        >
+          {copy.overview}
+        </TabTrigger>
+      </div>
+    );
   },
 };
 
@@ -83,51 +105,55 @@ export const Disabled: Story = {
 };
 
 export const AllStates: Story = {
-  render: () => (
-    <div className={styles.tabStory}>
-      {variants.map((variant) => (
-        <div
-          key={variant}
-          className={styles.tabStory__row}
-          role="tablist"
-          aria-label={`${variant} tab states`}
-        >
-          <div className={styles.tabStory__state}>
-            <span className={styles.tabStory__label}>Default</span>
-            <TabTrigger isSelected={false} onSelect={() => undefined} variant={variant}>
-              Overview
-            </TabTrigger>
-          </div>
+  render: () => {
+    const copy = useStoryCopy().components;
 
-          <div className={styles.tabStory__state}>
-            <span className={styles.tabStory__label}>Hover</span>
-            <TabTrigger
-              className={styles.tabStory__forcedHover}
-              isSelected={false}
-              onSelect={() => undefined}
-              variant={variant}
-            >
-              Overview
-            </TabTrigger>
-          </div>
+    return (
+      <div className={styles.tabStory}>
+        {variants.map((variant) => (
+          <div
+            key={variant}
+            className={styles.tabStory__row}
+            role="tablist"
+            aria-label={`${variant} ${copy.tabStates}`}
+          >
+            <div className={styles.tabStory__state}>
+              <span className={styles.tabStory__label}>{copy.default}</span>
+              <TabTrigger isSelected={false} onSelect={() => undefined} variant={variant}>
+                {copy.overview}
+              </TabTrigger>
+            </div>
 
-          <div className={styles.tabStory__state}>
-            <span className={styles.tabStory__label}>Selected</span>
-            <TabTrigger isSelected onSelect={() => undefined} variant={variant}>
-              Overview
-            </TabTrigger>
-          </div>
+            <div className={styles.tabStory__state}>
+              <span className={styles.tabStory__label}>{copy.hover}</span>
+              <TabTrigger
+                className={styles.tabStory__forcedHover}
+                isSelected={false}
+                onSelect={() => undefined}
+                variant={variant}
+              >
+                {copy.overview}
+              </TabTrigger>
+            </div>
 
-          <div className={styles.tabStory__state}>
-            <span className={styles.tabStory__label}>Disabled</span>
-            <TabTrigger disabled isSelected={false} onSelect={() => undefined} variant={variant}>
-              Overview
-            </TabTrigger>
+            <div className={styles.tabStory__state}>
+              <span className={styles.tabStory__label}>{copy.selected}</span>
+              <TabTrigger isSelected onSelect={() => undefined} variant={variant}>
+                {copy.overview}
+              </TabTrigger>
+            </div>
+
+            <div className={styles.tabStory__state}>
+              <span className={styles.tabStory__label}>{copy.disabled}</span>
+              <TabTrigger disabled isSelected={false} onSelect={() => undefined} variant={variant}>
+                {copy.overview}
+              </TabTrigger>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
-  ),
+        ))}
+      </div>
+    );
+  },
   parameters: {
     controls: {
       disable: true,

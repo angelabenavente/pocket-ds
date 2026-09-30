@@ -3,8 +3,27 @@ import "@fontsource/inter/latin-400.css";
 import "@fontsource/inter/latin-700.css";
 import "../src/foundations/styles/foundations.docs.scss";
 import "../src/styles/globals.scss";
+import { defaultLocale, locales, resolveLocale } from "../src/storybook/locales";
 
 const preview: Preview = {
+  globalTypes: {
+    locale: {
+      name: "Locale",
+      description: "Story locale",
+      toolbar: {
+        icon: "globe",
+        items: [...locales],
+        dynamicTitle: true,
+      },
+    },
+  },
+  decorators: [
+    (Story, context) => {
+      document.documentElement.lang = resolveLocale(context.globals.locale);
+
+      return Story();
+    },
+  ],
   parameters: {
     a11y: {
       test: "error",
@@ -34,6 +53,7 @@ const preview: Preview = {
     },
   },
   initialGlobals: {
+    locale: defaultLocale,
     viewport: { value: "responsive", isRotated: false },
   },
 };

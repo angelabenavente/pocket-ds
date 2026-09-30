@@ -1,20 +1,9 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import { FoundationsPage } from '../components/FoundationsPage';
-import { TypographyTable } from '../components/TypographyTable';
-import { typographyStyles } from '../data/foundations.data';
+import { TypographyDocs } from './FoundationsDocs';
 
 <Meta parameters={{ docs: { toc: false } }} title="Foundations/Typography" />
 
 <FoundationsPage>
-
-# Typography
-
-Typography styles provide consistent hierarchy and rhythm across interface content.
-
-Heading is used for page and section titles. Body is used for regular text. Button is used for clickable nodes, including tabs.
-
-<TypographyTable rows={typographyStyles} />
-
-The Sass presets are `heading-m`, `heading-s`, `body-m`, `body-s`, `button-m`, and `button-s`. CircularXX is used for headings and Inter for body and button styles; both include system fallbacks until font delivery is added.
-
+  <TypographyDocs />
 </FoundationsPage>
