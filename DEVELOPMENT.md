@@ -29,7 +29,11 @@ pnpm run licenses      # license summary
 pnpm run licenses:unknown
 ```
 
-`pnpm test` runs the Vitest suites for Badge, Tabs, and Text.
+`pnpm test` runs the Vitest unit suites for Badge, Tabs, Text, and FocusRing.
+
+`pnpm test-storybook` runs component, accessibility, and interaction tests from stories in a real browser (Playwright Chromium). The first run downloads Chromium automatically; you can also run `pnpm exec playwright install chromium` yourself. Enable **Coverage** in the Storybook testing widget, or run `pnpm test-storybook:coverage` for a CLI report in `./coverage`.
+
+Visual regression tests use [Chromatic](https://www.chromatic.com/). The addon is installed (`@chromatic-com/storybook`); connect a free account, then run visual tests from the Storybook testing widget or with `pnpm chromatic` locally (`CHROMATIC_PROJECT_TOKEN` required). To run visual tests in CI, add repository variable `CHROMATIC_ENABLED=true` and secret `CHROMATIC_PROJECT_TOKEN`.
 
 ## Pre-commit hook
 
@@ -49,4 +53,4 @@ Dependency audit and license inventory run in CI, not in the pre-commit hook.
 
 ## Continuous integration
 
-GitHub Actions workflow: `.github/workflows/ci.yml`. Separate jobs: **Run lint checks**, **Check code formatting**, **Check TypeScript types**, **Run unit tests**, **Build Storybook**, **Audit dependencies**, **Generate license inventory**, and **Check for unknown licenses**. Each installs from `pnpm-lock.yaml` with Node 24 and runs one check.
+GitHub Actions workflow: `.github/workflows/ci.yml`. Separate jobs: **Run lint checks**, **Check code formatting**, **Check TypeScript types**, **Run unit tests**, **Run Storybook tests**, **Run visual tests** (Chromatic, optional), **Build Storybook**, **Audit dependencies**, **Generate license inventory**, and **Check for unknown licenses**. Each installs from `pnpm-lock.yaml` with Node 24 and runs one check.
