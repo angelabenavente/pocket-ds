@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import type { BadgeVariant } from "../../atoms/Badge";
@@ -48,6 +48,22 @@ describe("Tabs", () => {
   });
 
   describe("selection behavior", () => {
+    it("does not notify consumers when the active tab is clicked again", async () => {
+      const user = userEvent.setup();
+      const onValueChange = vi.fn();
+      render(<UncontrolledTabs onValueChange={onValueChange} />);
+
+      const settingsTab = screen.getByRole("tab", { name: "Settings" });
+      await user.click(settingsTab);
+
+      expect(onValueChange).toHaveBeenCalledOnce();
+      expect(onValueChange).toHaveBeenCalledWith(2);
+
+      await user.click(settingsTab);
+
+      expect(onValueChange).toHaveBeenCalledOnce();
+    });
+
     it("selects a tab by click and notifies uncontrolled consumers", async () => {
       const user = userEvent.setup();
       const onValueChange = vi.fn();
@@ -150,6 +166,32 @@ describe("Tabs", () => {
       await user.keyboard("{ArrowLeft}");
       expect(settingsTab).toHaveFocus();
     });
+
+    it("ignores unhandled keys on a tab", async () => {
+      const user = userEvent.setup();
+      render(<UncontrolledTabs />);
+
+      const overviewTab = screen.getByRole("tab", { name: "Overview" });
+
+      await user.tab();
+      expect(overviewTab).toHaveFocus();
+
+      await user.keyboard("{Enter}");
+
+      expect(overviewTab).toHaveFocus();
+    });
+
+    it("ignores arrow keys when the event target is not a tab", () => {
+      render(<UncontrolledTabs />);
+
+      const tablist = screen.getByRole("tablist");
+      const settingsTab = screen.getByRole("tab", { name: "Settings" });
+
+      settingsTab.focus();
+      fireEvent.keyDown(tablist, { key: "ArrowRight" });
+
+      expect(settingsTab).toHaveFocus();
+    });
   });
 
   describe("visual variants", () => {
@@ -227,6 +269,44 @@ describe("Tabs", () => {
       );
     }
 
+    it("scrolls a left-clipped tab into view on mobile", async () => {
+      const user = userEvent.setup();
+      mockViewport(true);
+      render(<UncontrolledTabs />);
+
+      const list = screen.getByRole("tablist");
+      const settingsTab = screen.getByRole("tab", { name: "Settings" });
+      const scrollBy = vi.fn();
+      list.scrollBy = scrollBy;
+      mockTabRect(settingsTab, list, { left: -24, right: 56 });
+
+      await user.click(settingsTab);
+
+      expect(scrollBy).toHaveBeenCalledWith({ left: -24, behavior: "smooth" });
+    });
+
+    it("uses instant scrolling when reduced motion is preferred", async () => {
+      const user = userEvent.setup();
+      vi.stubGlobal("matchMedia", (query: string) => ({
+        matches: query === "(max-width: 768px)" || query === "(prefers-reduced-motion: reduce)",
+        media: query,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+      }));
+      render(<UncontrolledTabs />);
+
+      const list = screen.getByRole("tablist");
+      const settingsTab = screen.getByRole("tab", { name: "Settings" });
+      const scrollBy = vi.fn();
+      list.scrollBy = scrollBy;
+      mockTabRect(settingsTab, list, { left: 70, right: 150 });
+
+      await user.click(settingsTab);
+
+      expect(scrollBy).toHaveBeenCalledWith({ left: 50, behavior: "auto" });
+    });
+
     it("scrolls a clipped tab fully into view on mobile", async () => {
       const user = userEvent.setup();
       mockViewport(true);
@@ -273,6 +353,19 @@ describe("Tabs", () => {
       await user.click(settingsTab);
 
       expect(scrollBy).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("Tabs.Tab placeholder", () => {
+    it("renders nothing when used outside the Tabs layout", () => {
+      render(
+        <Tabs.Tab label="Lonely" badge={{ label: "1", variant: "neutral" }}>
+          Hidden panel
+        </Tabs.Tab>,
+      );
+
+      expect(screen.queryByRole("tab")).not.toBeInTheDocument();
+      expect(screen.queryByText("Hidden panel")).not.toBeInTheDocument();
     });
   });
 

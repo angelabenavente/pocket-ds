@@ -13,8 +13,17 @@ export default defineConfig({
   test: {
     coverage: {
       provider: "v8",
+      reportsDirectory: "./coverage",
+      reporter: ["text", "html", "json-summary"],
       include: ["src/components/**/*.{ts,tsx}"],
-      exclude: ["**/*.stories.*", "**/*.test.*", "**/*.module.scss"],
+      exclude: ["**/*.stories.*", "**/*.test.*", "**/*.module.scss", "**/index.ts", "**/types.ts"],
+      all: true,
+      watermarks: {
+        statements: [50, 80],
+        branches: [50, 80],
+        functions: [50, 80],
+        lines: [50, 80],
+      },
     },
     projects: [
       {

@@ -14,4 +14,5 @@ node_modules/
 
 # build output
 storybook-static/
+coverage/
 index.db

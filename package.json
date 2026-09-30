@@ -66,6 +66,8 @@
     "chromatic": "chromatic --exit-zero-on-changes",
     "storybook": "storybook dev -p 6006 --disable-telemetry",
     "test": "vitest run --project=unit",
+    "pretest:coverage": "playwright install chromium",
+    "test:coverage": "vitest run --coverage",
     "pretest-storybook": "playwright install chromium",
     "test-storybook": "vitest run --project=storybook",
     "pretest-storybook:coverage": "playwright install chromium",
