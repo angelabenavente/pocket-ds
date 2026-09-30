@@ -1,5 +1,8 @@
 export { Badge, type BadgeProps, type BadgeVariant } from "./atoms/Badge";
-export type { TabVariant as TabsVariant } from "./molecules/Tab";
+export type {
+  TabBadge as TabsTabBadge,
+  TabVariant as TabsVariant,
+} from "./molecules/Tab";
 export {
   Tabs,
   TabsList,

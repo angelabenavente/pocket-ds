@@ -1,6 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
+import type { BadgeVariant } from "../../atoms/Badge";
 import { Tabs } from "./Tabs";
 
 function UncontrolledTabs(props: {
@@ -157,6 +158,38 @@ describe("Tabs", () => {
       expect(overviewTab).toHaveFocus();
       expect(overviewTab).toHaveAttribute("aria-selected", "true");
     });
+  });
+
+  // Badge integration: content, variants, and accessible attributes exposed by Tabs.Tab.
+  describe("badge integration", () => {
+    it.each<BadgeVariant>(["neutral", "positive", "negative"])(
+      "renders a %s badge through the tab API",
+      (variant) => {
+        render(
+          <Tabs.Root defaultValue="overview">
+            <Tabs.List aria-label="Sections with status">
+              <Tabs.Tab
+                value="overview"
+                badge={{
+                  content: "3",
+                  variant,
+                  "aria-label": `${variant} notifications`,
+                }}
+              >
+                Overview
+              </Tabs.Tab>
+            </Tabs.List>
+            <Tabs.Panel value="overview">Overview content</Tabs.Panel>
+          </Tabs.Root>,
+        );
+
+        const tab = screen.getByRole("tab");
+        const badge = within(tab).getByLabelText(`${variant} notifications`);
+
+        expect(badge).toHaveTextContent("3");
+        expect(badge).toHaveAttribute("data-variant", variant);
+      },
+    );
   });
 
   // Isolation: unique relationships when multiple instances share the same values.
