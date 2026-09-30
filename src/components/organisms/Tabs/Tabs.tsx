@@ -1,6 +1,9 @@
 import cn from "classnames";
 import {
+  Children,
   createContext,
+  isValidElement,
+  type ReactElement,
   type KeyboardEvent as ReactKeyboardEvent,
   useContext,
   useId,
@@ -13,13 +16,13 @@ import type {
   TabsContextValue,
   TabsListProps,
   TabsPanelProps,
-  TabsRootProps,
+  TabsProps,
   TabsTabProps,
 } from "./types";
 
 const TabsContext = createContext<TabsContextValue | null>(null);
 
-export function TabsRoot(props: TabsRootProps) {
+function TabsRoot(props: Omit<TabsProps, "aria-label" | "aria-labelledby">) {
   const {
     children,
     className,
@@ -30,7 +33,7 @@ export function TabsRoot(props: TabsRootProps) {
     ...rootProps
   } = props;
   const generatedId = useId();
-  const [internalValue, setInternalValue] = useState(() => defaultValue ?? value ?? "");
+  const [internalValue, setInternalValue] = useState(() => defaultValue ?? value ?? 0);
   const isControlled = value !== undefined;
   const activeValue = isControlled ? value : internalValue;
   const baseId = `tabs-${generatedId.replace(/:/g, "")}`;
@@ -64,7 +67,7 @@ export function TabsRoot(props: TabsRootProps) {
   );
 }
 
-export function TabsList(props: TabsListProps) {
+function TabsList(props: TabsListProps) {
   const { className, onKeyDown, ...listProps } = props;
 
   const handleKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
@@ -106,11 +109,11 @@ export function TabsList(props: TabsListProps) {
   );
 }
 
-export function TabsTab(props: TabsTabProps) {
-  const { value, ...tabProps } = props;
+function TabsTrigger(props: Omit<TabsTabProps, "children"> & { index: number }) {
+  const { index, ...tabProps } = props;
   const { activeValue, baseId, selectValue, variant } = useTabsContext("Tabs.Tab");
-  const valueId = toIdPart(value);
-  const isSelected = activeValue === value;
+  const valueId = toIdPart(index);
+  const isSelected = activeValue === index;
 
   return (
     <TabTrigger
@@ -118,14 +121,14 @@ export function TabsTab(props: TabsTabProps) {
       id={`${baseId}-tab-${valueId}`}
       aria-controls={`${baseId}-panel-${valueId}`}
       isSelected={isSelected}
-      onSelect={() => selectValue(value)}
+      onSelect={() => selectValue(index)}
       tabIndex={isSelected ? 0 : -1}
       variant={variant}
     />
   );
 }
 
-export function TabsPanel(props: TabsPanelProps) {
+function TabsPanel(props: TabsPanelProps) {
   const { className, value, ...panelProps } = props;
   const { activeValue, baseId } = useTabsContext("Tabs.Panel");
   const valueId = toIdPart(value);
@@ -142,18 +145,24 @@ export function TabsPanel(props: TabsPanelProps) {
   );
 }
 
+function TabsTab(_props: TabsTabProps) {
+  return null;
+}
+
+TabsTab.displayName = "Tabs.Tab";
+
 function useTabsContext(componentName: string) {
   const context = useContext(TabsContext);
 
   if (!context) {
-    throw new Error(`${componentName} must be used within Tabs.Root.`);
+    throw new Error(`${componentName} must be used within Tabs.`);
   }
 
   return context;
 }
 
-function toIdPart(value: string) {
-  return encodeURIComponent(value);
+function toIdPart(index: number) {
+  return String(index);
 }
 
 function getNextTabIndex(key: string, currentIndex: number, tabCount: number) {
@@ -171,9 +180,42 @@ function getNextTabIndex(key: string, currentIndex: number, tabCount: number) {
   }
 }
 
-export const Tabs = {
-  Root: TabsRoot,
-  List: TabsList,
+function tabElementKey(label: string, index: number) {
+  return `${label}-${index}`;
+}
+
+function isTabElement(child: unknown): child is ReactElement<TabsTabProps> {
+  return isValidElement(child) && child.type === TabsTab;
+}
+
+function TabsComponent(props: TabsProps) {
+  const { "aria-label": ariaLabel, children, key, ...rootProps } = props;
+
+  void key;
+  const items = Children.toArray(children).filter(isTabElement);
+
+  return (
+    <TabsRoot {...rootProps}>
+      <TabsList aria-label={ariaLabel}>
+        {items.map((item, index) => {
+          const { children: _panel, ...tabProps } = item.props;
+
+          return (
+            <TabsTrigger key={tabElementKey(item.props.label, index)} index={index} {...tabProps} />
+          );
+        })}
+      </TabsList>
+      {items.map((item, index) => (
+        <TabsPanel key={tabElementKey(item.props.label, index)} value={index}>
+          {item.props.children}
+        </TabsPanel>
+      ))}
+    </TabsRoot>
+  );
+}
+
+TabsComponent.displayName = "Tabs";
+
+export const Tabs = Object.assign(TabsComponent, {
   Tab: TabsTab,
-  Panel: TabsPanel,
-};
+});

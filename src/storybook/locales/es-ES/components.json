@@ -4,10 +4,8 @@
   "activityContent": "contenido de actividad",
   "activityUpdates": "12 actualizaciones positivas de actividad",
   "badge": "Insignia",
-  "default": "Predeterminado",
   "disabled": "Desactivado",
   "disabledContent": "contenido desactivado",
-  "hover": "Hover",
   "hoveredTabPreview": "Vista previa de tab en hover",
   "inboxSections": "Secciones de la bandeja",
   "negative": "Negativo",
@@ -17,12 +15,8 @@
   "overviewContent": "contenido del resumen",
   "overviewNotifications": "3 notificaciones del resumen",
   "positive": "Positivo",
-  "primarySections": "Secciones principales",
-  "secondarySections": "Secciones secundarias",
-  "selected": "Seleccionado",
   "settings": "Ajustes",
   "settingsContent": "contenido de ajustes",
   "tabPreview": "Vista previa del tab",
-  "tabStates": "estados del tab",
   "textSample": "El veloz murciélago hindú comía feliz cardillo y kiwi."
 }

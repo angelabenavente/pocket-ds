@@ -29,6 +29,9 @@ const preview: Preview = {
       test: "error",
     },
     docs: {
+      source: {
+        type: "dynamic",
+      },
       toc: true,
     },
     layout: "padded",

@@ -33,9 +33,7 @@ export function TypographyTable(props: TypographyTableProps) {
           {rows.map((row) => (
             <tr key={row.id}>
               <td className={styles.typographyTable__typeCell}>
-                <Text as="span" variant={row.id}>
-                  {row.name}
-                </Text>
+                <Text as="span" variant={row.id} label={row.name} />
               </td>
               <td className={styles.typographyTable__descriptionCell}>{row.description}</td>
               <td className={styles.typographyTable__fontFamilyCell}>{row.fontFamily}</td>

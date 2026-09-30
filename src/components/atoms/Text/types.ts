@@ -15,7 +15,10 @@ export type TextElement = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span"
 
 type TextOwnProps = {
   as?: TextElement;
-  children: ReactNode;
+  children?: ReactNode;
+  className?: string;
+  key?: string;
+  label?: string;
   variant?: TextVariant;
 };
 

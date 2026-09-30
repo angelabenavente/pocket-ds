@@ -6,30 +6,24 @@ import type { TabVariant } from "../../molecules/Tab";
 import { Tabs } from "./Tabs";
 
 function UncontrolledTabs(props: {
-  defaultValue?: string;
+  defaultValue?: number;
   label?: string;
-  onValueChange?: (value: string) => void;
+  onValueChange?: (value: number) => void;
 }) {
-  const { defaultValue = "overview", label = "Account sections", onValueChange } = props;
+  const { defaultValue = 0, label = "Account sections", onValueChange } = props;
 
   return (
-    <Tabs.Root defaultValue={defaultValue} onValueChange={onValueChange}>
-      <Tabs.List aria-label={label}>
-        <Tabs.Tab value="overview">Overview</Tabs.Tab>
-        <Tabs.Tab value="activity" disabled>
-          Activity
-        </Tabs.Tab>
-        <Tabs.Tab value="settings">Settings</Tabs.Tab>
-      </Tabs.List>
-      <Tabs.Panel value="overview">Overview content</Tabs.Panel>
-      <Tabs.Panel value="activity">Activity content</Tabs.Panel>
-      <Tabs.Panel value="settings">Settings content</Tabs.Panel>
-    </Tabs.Root>
+    <Tabs aria-label={label} defaultValue={defaultValue} onValueChange={onValueChange}>
+      <Tabs.Tab label="Overview">Overview content</Tabs.Tab>
+      <Tabs.Tab label="Activity" disabled>
+        Activity content
+      </Tabs.Tab>
+      <Tabs.Tab label="Settings">Settings content</Tabs.Tab>
+    </Tabs>
   );
 }
 
 describe("Tabs", () => {
-  // Accessibility: semantic roles, ARIA state, and tab-panel relationships.
   describe("accessibility and semantics", () => {
     it("connects the selected tab with its visible panel", () => {
       render(<UncontrolledTabs />);
@@ -51,7 +45,6 @@ describe("Tabs", () => {
     });
   });
 
-  // Selection: uncontrolled, controlled, and disabled state behavior.
   describe("selection behavior", () => {
     it("selects a tab by click and notifies uncontrolled consumers", async () => {
       const user = userEvent.setup();
@@ -64,7 +57,7 @@ describe("Tabs", () => {
       expect(settingsTab).toHaveAttribute("aria-selected", "true");
       expect(screen.getByRole("tabpanel")).toHaveTextContent("Settings content");
       expect(onValueChange).toHaveBeenCalledOnce();
-      expect(onValueChange).toHaveBeenCalledWith("settings");
+      expect(onValueChange).toHaveBeenCalledWith(2);
     });
 
     it("does not select a disabled tab", async () => {
@@ -86,19 +79,15 @@ describe("Tabs", () => {
       const onValueChange = vi.fn();
 
       render(
-        <Tabs.Root value="overview" onValueChange={onValueChange}>
-          <Tabs.List aria-label="Controlled sections">
-            <Tabs.Tab value="overview">Overview</Tabs.Tab>
-            <Tabs.Tab value="settings">Settings</Tabs.Tab>
-          </Tabs.List>
-          <Tabs.Panel value="overview">Overview content</Tabs.Panel>
-          <Tabs.Panel value="settings">Settings content</Tabs.Panel>
-        </Tabs.Root>,
+        <Tabs aria-label="Controlled sections" value={0} onValueChange={onValueChange}>
+          <Tabs.Tab label="Overview">Overview content</Tabs.Tab>
+          <Tabs.Tab label="Settings">Settings content</Tabs.Tab>
+        </Tabs>,
       );
 
       await user.click(screen.getByRole("tab", { name: "Settings" }));
 
-      expect(onValueChange).toHaveBeenCalledWith("settings");
+      expect(onValueChange).toHaveBeenCalledWith(1);
       expect(screen.getByRole("tab", { name: "Overview" })).toHaveAttribute(
         "aria-selected",
         "true",
@@ -107,7 +96,6 @@ describe("Tabs", () => {
     });
   });
 
-  // Keyboard: focus movement, automatic activation, and event overrides.
   describe("keyboard navigation", () => {
     it("moves focus, selects automatically, wraps, and skips disabled tabs", async () => {
       const user = userEvent.setup();
@@ -137,40 +125,14 @@ describe("Tabs", () => {
       await user.keyboard("{ArrowLeft}");
       expect(settingsTab).toHaveFocus();
     });
-
-    it("respects a consumer preventing the list keyboard event", async () => {
-      const user = userEvent.setup();
-
-      render(
-        <Tabs.Root defaultValue="overview">
-          <Tabs.List aria-label="Prevented sections" onKeyDown={(event) => event.preventDefault()}>
-            <Tabs.Tab value="overview">Overview</Tabs.Tab>
-            <Tabs.Tab value="settings">Settings</Tabs.Tab>
-          </Tabs.List>
-          <Tabs.Panel value="overview">Overview content</Tabs.Panel>
-          <Tabs.Panel value="settings">Settings content</Tabs.Panel>
-        </Tabs.Root>,
-      );
-
-      const overviewTab = screen.getByRole("tab", { name: "Overview" });
-      overviewTab.focus();
-      await user.keyboard("{ArrowRight}");
-
-      expect(overviewTab).toHaveFocus();
-      expect(overviewTab).toHaveAttribute("aria-selected", "true");
-    });
   });
 
-  // Variants: every official Tabs option is propagated to its tab triggers.
   describe("visual variants", () => {
     it.each<TabVariant>(["underline", "pill"])("supports the %s variant", (variant) => {
       render(
-        <Tabs.Root defaultValue="overview" variant={variant} data-testid="tabs-root">
-          <Tabs.List aria-label="Variant sections">
-            <Tabs.Tab value="overview">Overview</Tabs.Tab>
-          </Tabs.List>
-          <Tabs.Panel value="overview">Overview content</Tabs.Panel>
-        </Tabs.Root>,
+        <Tabs aria-label="Variant sections" variant={variant} data-testid="tabs-root">
+          <Tabs.Tab label="Overview">Overview content</Tabs.Tab>
+        </Tabs>,
       );
 
       expect(screen.getByTestId("tabs-root")).toHaveAttribute("data-variant", variant);
@@ -178,27 +140,23 @@ describe("Tabs", () => {
     });
   });
 
-  // Badge integration: content, variants, and accessible attributes exposed by Tabs.Tab.
   describe("badge integration", () => {
     it.each<BadgeVariant>(["neutral", "positive", "negative"])(
       "renders a %s badge through the tab API",
       (variant) => {
         render(
-          <Tabs.Root defaultValue="overview">
-            <Tabs.List aria-label="Sections with status">
-              <Tabs.Tab
-                value="overview"
-                badge={{
-                  content: "3",
-                  variant,
-                  "aria-label": `${variant} notifications`,
-                }}
-              >
-                Overview
-              </Tabs.Tab>
-            </Tabs.List>
-            <Tabs.Panel value="overview">Overview content</Tabs.Panel>
-          </Tabs.Root>,
+          <Tabs aria-label="Sections with status">
+            <Tabs.Tab
+              label="Overview"
+              badge={{
+                label: "3",
+                variant,
+                "aria-label": `${variant} notifications`,
+              }}
+            >
+              Overview content
+            </Tabs.Tab>
+          </Tabs>,
         );
 
         const tab = screen.getByRole("tab");
@@ -210,7 +168,6 @@ describe("Tabs", () => {
     );
   });
 
-  // Isolation: unique relationships when multiple instances share the same values.
   describe("multiple instances", () => {
     it("generates unique tab and panel IDs for multiple instances", () => {
       render(

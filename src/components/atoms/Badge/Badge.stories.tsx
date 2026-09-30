@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useStoryCopy } from "../../../storybook/locales";
 import { Badge } from "./Badge";
-import styles from "./Badge.stories.module.scss";
 import type { BadgeVariant } from "./types";
 
 const variants: BadgeVariant[] = ["neutral", "positive", "negative"];
@@ -11,11 +9,11 @@ const meta = {
   component: Badge,
   tags: ["autodocs"],
   args: {
-    children: "Badge",
+    label: "Badge",
     variant: "neutral",
   },
   argTypes: {
-    children: {
+    label: {
       control: false,
     },
     variant: {
@@ -31,36 +29,22 @@ const meta = {
       },
     },
   },
-  render: (args) => {
-    const copy = useStoryCopy().components;
-
-    return <Badge {...args}>{copy.badge}</Badge>;
-  },
 } satisfies Meta<typeof Badge>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Playground: Story = {};
+export const Neutral: Story = {};
 
-export const Variants: Story = {
-  render: (args) => {
-    const copy = useStoryCopy().components;
-
-    return (
-      <div className={styles.badgeStory}>
-        {variants.map((variant) => (
-          <Badge {...args} key={variant} variant={variant}>
-            {copy[variant]}
-          </Badge>
-        ))}
-      </div>
-    );
+export const Positive: Story = {
+  args: {
+    variant: "positive",
   },
-  parameters: {
-    controls: {
-      disable: true,
-    },
+};
+
+export const Negative: Story = {
+  args: {
+    variant: "negative",
   },
 };

@@ -2,30 +2,25 @@ import type { ComponentPropsWithoutRef, HTMLAttributes, ReactNode } from "react"
 import type { TabTrigger, TabVariant } from "../../molecules/Tab";
 
 export interface TabsContextValue {
-  activeValue: string;
+  activeValue: number;
   baseId: string;
-  selectValue: (value: string) => void;
+  selectValue: (value: number) => void;
   variant: TabVariant;
 }
 
-interface ControlledTabsRootProps {
-  value: string;
+interface ControlledTabsProps {
+  value: number;
   defaultValue?: never;
-  onValueChange: (value: string) => void;
+  onValueChange: (value: number) => void;
 }
 
-interface UncontrolledTabsRootProps {
+interface UncontrolledTabsProps {
   value?: never;
-  defaultValue: string;
-  onValueChange?: (value: string) => void;
+  defaultValue?: number;
+  onValueChange?: (value: number) => void;
 }
 
-type TabsRootStateProps = ControlledTabsRootProps | UncontrolledTabsRootProps;
-
-export type TabsRootProps = Omit<HTMLAttributes<HTMLDivElement>, "defaultValue" | "onChange"> &
-  TabsRootStateProps & {
-    variant?: TabVariant;
-  };
+type TabsStateProps = ControlledTabsProps | UncontrolledTabsProps;
 
 interface LabelledBy {
   "aria-label"?: never;
@@ -37,29 +32,42 @@ interface Labelled {
   "aria-labelledby"?: never;
 }
 
+export type TabsProps = Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "aria-label" | "className" | "defaultValue" | "onChange"
+> &
+  TabsStateProps & {
+    "aria-label": string;
+    children: ReactNode;
+    className?: string;
+    key?: string;
+    variant?: TabVariant;
+  };
+
+export type TabsTabProps = Omit<
+  ComponentPropsWithoutRef<typeof TabTrigger>,
+  | "aria-controls"
+  | "aria-selected"
+  | "id"
+  | "isSelected"
+  | "onSelect"
+  | "role"
+  | "tabIndex"
+  | "variant"
+> & {
+  children: ReactNode;
+};
+
 export type TabsListProps = Omit<
   HTMLAttributes<HTMLDivElement>,
   "aria-label" | "aria-labelledby" | "aria-orientation" | "role"
 > &
   (Labelled | LabelledBy);
 
-export interface TabsTabProps
-  extends Omit<
-    ComponentPropsWithoutRef<typeof TabTrigger>,
-    | "aria-controls"
-    | "aria-selected"
-    | "id"
-    | "isSelected"
-    | "onSelect"
-    | "role"
-    | "tabIndex"
-    | "variant"
-  > {
-  value: string;
-}
-
-export interface TabsPanelProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "aria-labelledby" | "hidden" | "id" | "role"> {
-  value: string;
+export type TabsPanelProps = Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "aria-labelledby" | "hidden" | "id" | "role"
+> & {
   children: ReactNode;
-}
+  value: number;
+};

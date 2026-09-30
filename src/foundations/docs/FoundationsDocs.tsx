@@ -60,17 +60,17 @@ export function ColorsDocs() {
 
   return (
     <>
-      <Text variant="heading-m">{colors.title}</Text>
-      <Text variant="body-s">{colors.intro}</Text>
-      <Text variant="heading-s">{colors.semanticTitle}</Text>
-      <Text variant="body-s">{colors.semanticIntro}</Text>
+      <Text variant="heading-m" label={colors.title} />
+      <Text variant="body-s" label={colors.intro} />
+      <Text variant="heading-s" label={colors.semanticTitle} />
+      <Text variant="body-s" label={colors.semanticIntro} />
       <ColorTable
         caption={colors.semanticCaption}
         labels={colors.columns}
         rows={semanticColors.map((color) => localizeColor(color, copy))}
       />
-      <Text variant="heading-s">{colors.reservedTitle}</Text>
-      <Text variant="body-s">{colors.reservedIntro}</Text>
+      <Text variant="heading-s" label={colors.reservedTitle} />
+      <Text variant="body-s" label={colors.reservedIntro} />
       <ColorTable
         caption={colors.reservedCaption}
         labels={colors.columns}
@@ -86,14 +86,14 @@ export function TypographyDocs() {
 
   return (
     <>
-      <Text variant="heading-m">{typography.title}</Text>
-      <Text variant="body-s">{typography.intro}</Text>
-      <Text variant="body-s">{typography.usage}</Text>
+      <Text variant="heading-m" label={typography.title} />
+      <Text variant="body-s" label={typography.intro} />
+      <Text variant="body-s" label={typography.usage} />
       <TypographyTable
         labels={typography.columns}
         rows={typographyStyles.map((row) => localizeTypography(row, copy))}
       />
-      <Text variant="body-s">{typography.presets}</Text>
+      <Text variant="body-s" label={typography.presets} />
     </>
   );
 }
@@ -104,13 +104,13 @@ export function SpacingDocs() {
 
   return (
     <>
-      <Text variant="heading-m">{spacing.title}</Text>
-      <Text variant="body-s">{spacing.intro}</Text>
+      <Text variant="heading-m" label={spacing.title} />
+      <Text variant="body-s" label={spacing.intro} />
       <SpacingTable
         items={spacingScale}
         labels={{ ...spacing.columns, primitiveOnly: spacing.primitiveOnly }}
       />
-      <Text variant="body-s">{spacing.note}</Text>
+      <Text variant="body-s" label={spacing.note} />
     </>
   );
 }
@@ -124,8 +124,8 @@ export function BreakpointsDocs() {
 
   return (
     <>
-      <Text variant="heading-m">{content.title}</Text>
-      <Text variant="body-s">{content.intro}</Text>
+      <Text variant="heading-m" label={content.title} />
+      <Text variant="body-s" label={content.intro} />
       <TokenTable
         columns={[
           { header: content.columns.figma, accessor: "figma" },
@@ -142,7 +142,7 @@ export function BreakpointsDocs() {
       <pre>
         <code>{breakpointExample}</code>
       </pre>
-      <Text variant="body-s">{content.upcoming}</Text>
+      <Text variant="body-s" label={content.upcoming} />
     </>
   );
 }

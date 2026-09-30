@@ -4,14 +4,9 @@ import { Badge } from "./Badge";
 import type { BadgeVariant } from "./types";
 
 describe("Badge", () => {
-  // Rendering: content, native attributes, and the default visual contract.
   describe("rendering", () => {
     it("renders content with the neutral variant by default", () => {
-      render(
-        <Badge className="custom-class" aria-label="Notifications">
-          3
-        </Badge>,
-      );
+      render(<Badge className="custom-class" aria-label="Notifications" label="3" />);
 
       const badge = screen.getByLabelText("Notifications");
 
@@ -21,12 +16,11 @@ describe("Badge", () => {
     });
   });
 
-  // Variants: every official visual option is exposed through the public API.
   describe("variants", () => {
     it.each<BadgeVariant>(["neutral", "positive", "negative"])(
       "supports the %s variant",
       (variant) => {
-        render(<Badge variant={variant}>{variant}</Badge>);
+        render(<Badge variant={variant} label={variant} />);
 
         expect(screen.getByText(variant)).toHaveAttribute("data-variant", variant);
       },

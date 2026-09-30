@@ -4,10 +4,8 @@
   "activityContent": "activity content",
   "activityUpdates": "12 positive activity updates",
   "badge": "Badge",
-  "default": "Default",
   "disabled": "Disabled",
   "disabledContent": "disabled content",
-  "hover": "Hover",
   "hoveredTabPreview": "Hovered tab preview",
   "inboxSections": "Inbox sections",
   "negative": "Negative",
@@ -17,12 +15,8 @@
   "overviewContent": "overview content",
   "overviewNotifications": "3 overview notifications",
   "positive": "Positive",
-  "primarySections": "Primary sections",
-  "secondarySections": "Secondary sections",
-  "selected": "Selected",
   "settings": "Settings",
   "settingsContent": "settings content",
   "tabPreview": "Tab preview",
-  "tabStates": "tab states",
   "textSample": "The quick brown fox jumps over the lazy dog."
 }

@@ -4,7 +4,9 @@ import styles from "./Badge.module.scss";
 import type { BadgeProps } from "./types";
 
 export function Badge(props: BadgeProps) {
-  const { children, className, variant = "neutral", ...badgeProps } = props;
+  const { className, key, label, variant = "neutral", ...badgeProps } = props;
+
+  void key;
 
   return (
     <Text
@@ -12,9 +14,8 @@ export function Badge(props: BadgeProps) {
       as="span"
       className={cn(styles.badge, className)}
       data-variant={variant}
+      label={label}
       variant="body-s"
-    >
-      {children}
-    </Text>
+    />
   );
 }

@@ -11,12 +11,14 @@ const defaultElements: Record<TextVariant, TextElement> = {
 };
 
 export function Text(props: TextProps) {
-  const { as, children, className, variant = "body-m", ...textProps } = props;
+  const { as, children, className, key, label, variant = "body-m", ...textProps } = props;
+
+  void key;
   const Element = as ?? defaultElements[variant];
 
   return (
     <Element {...textProps} className={cn(variant, className)}>
-      {children}
+      {label ?? children}
     </Element>
   );
 }

@@ -13,10 +13,9 @@ const defaultElements: Record<TextVariant, TextElement> = {
 };
 
 describe("Text", () => {
-  // Rendering: content, native attributes, and the default visual contract.
   describe("rendering", () => {
     it("renders body-m as a paragraph by default", () => {
-      render(<Text className="custom-class">Regular text</Text>);
+      render(<Text className="custom-class" label="Regular text" />);
 
       const text = screen.getByText("Regular text");
 
@@ -25,12 +24,11 @@ describe("Text", () => {
     });
   });
 
-  // Variants: every foundation typography style maps to its default element.
   describe("variants", () => {
     it.each(Object.entries(defaultElements) as Array<[TextVariant, TextElement]>)(
       "renders %s as %s",
       (variant, element) => {
-        render(<Text variant={variant}>{variant}</Text>);
+        render(<Text variant={variant} label={variant} />);
 
         const text = screen.getByText(variant);
 
@@ -40,20 +38,15 @@ describe("Text", () => {
     );
   });
 
-  // Element override: button styles stay typography and never render a button.
   describe("element", () => {
     it.each(["h4", "h5", "h6"] as const)("can render as %s", (element) => {
-      render(<Text as={element}>Heading</Text>);
+      render(<Text as={element} label="Heading" />);
 
       expect(screen.getByText("Heading").tagName).toBe(element.toUpperCase());
     });
 
     it("uses the requested element instead of the variant default", () => {
-      render(
-        <Text as="span" variant="heading-m">
-          Section title
-        </Text>,
-      );
+      render(<Text as="span" variant="heading-m" label="Section title" />);
 
       const text = screen.getByText("Section title");
 
