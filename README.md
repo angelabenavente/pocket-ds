@@ -39,3 +39,5 @@ import { Badge, Tabs, Text } from "pocket-ds";
 `Tabs` variants are `underline` and `pill`. Alignment is `left`, `center`, or `right`. A tab can be selected, disabled, or hovered. Hover and active are CSS states. `Badge` variants are `neutral`, `positive`, and `negative`. `Text` variants are `body-m`, `body-s`, `heading-m`, `heading-s`, `button-m`, and `button-s`.
 
 To work on this repository, see [DEVELOPMENT.md](DEVELOPMENT.md).
+
+Made with love by [Angie](https://github.com/angelabenavente) <3
